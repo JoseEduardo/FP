@@ -16,7 +16,7 @@ namespace SharpTibiaProxy.Domain
         public Location Location { get; private set; }
         public int ThingCount { get { return things.Count; } }
 
-        public List<Thing> things { get; private set; }
+        private List<Thing> things;
 
         public Tile(Location location)
         {
@@ -60,14 +60,7 @@ namespace SharpTibiaProxy.Domain
                         throw new Exception("[AddThing] Invalid ground item.");
                 }
 
-                if (things.Count < index)
-                {
-                    things.Add(thing);
-                }
-                else
-                {
-                    things.Insert(index, thing);
-                }
+                things.Insert(index, thing);
             }
             else
             {

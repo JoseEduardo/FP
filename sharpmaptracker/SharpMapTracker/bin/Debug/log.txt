@@ -1,0 +1,6 @@
+Open Tibia items successfully loaded.
+Can't load npc words file.
+Open Tibia items successfully loaded.
+This map needs an updated items.otb.
+[Error] Unable to load the map. Details: Unkonw item attribute: 97
+Map successfully saved.

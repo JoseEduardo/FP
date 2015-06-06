@@ -1,0 +1,13 @@
+C:\Google Drive\FanPoke\sharpmaptracker\SharpMapTracker\bin\Debug\SharpMapTracker.exe
+C:\Google Drive\FanPoke\sharpmaptracker\SharpMapTracker\bin\Debug\SharpMapTracker.pdb
+C:\Google Drive\FanPoke\sharpmaptracker\SharpMapTracker\bin\Debug\OpenTibiaCommons.dll
+C:\Google Drive\FanPoke\sharpmaptracker\SharpMapTracker\bin\Debug\SharpTibiaProxy.dll
+C:\Google Drive\FanPoke\sharpmaptracker\SharpMapTracker\bin\Debug\BouncyCastle.Crypto.dll
+C:\Google Drive\FanPoke\sharpmaptracker\SharpMapTracker\bin\Debug\OpenTibiaCommons.pdb
+C:\Google Drive\FanPoke\sharpmaptracker\SharpMapTracker\bin\Debug\SharpTibiaProxy.pdb
+C:\Google Drive\FanPoke\sharpmaptracker\SharpMapTracker\obj\x86\Debug\SharpMapTracker.csprojResolveAssemblyReference.cache
+C:\Google Drive\FanPoke\sharpmaptracker\SharpMapTracker\obj\x86\Debug\SharpMapTracker.MainForm.resources
+C:\Google Drive\FanPoke\sharpmaptracker\SharpMapTracker\obj\x86\Debug\SharpMapTracker.MiniMap.resources
+C:\Google Drive\FanPoke\sharpmaptracker\SharpMapTracker\obj\x86\Debug\SharpMapTracker.csproj.GenerateResource.Cache
+C:\Google Drive\FanPoke\sharpmaptracker\SharpMapTracker\obj\x86\Debug\SharpMapTracker.exe
+C:\Google Drive\FanPoke\sharpmaptracker\SharpMapTracker\obj\x86\Debug\SharpMapTracker.pdb

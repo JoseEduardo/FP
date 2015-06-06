@@ -227,17 +227,16 @@ namespace SharpMapTracker
             {
                 var chooserOptions = new ClientChooserOptions();
                 chooserOptions.Smart = true;
-                chooserOptions.ShowOTOption = false;
+                chooserOptions.ShowOTOption = true;
                 chooserOptions.OfflineOnly = true;
 
-                var c = ClientChooser.ShowBox(chooserOptions);
+                var c = ClientChooser.ShowBox(chooserOptions, this);
 
                 if (c != null)
                 {
                     if (c.Version.OtbMajorVersion != otItems.MajorVersion || c.Version.OtbMinorVersion != otItems.MinorVersion)
                         Trace.WriteLine("[Warning] This client requires the version " + c.Version.OtbMajorVersion + "." + c.Version.OtbMinorVersion + " of items.otb.");
 
-                    c.LoginServers = new LoginServer[] { new LoginServer("127.0.0.1", 7171) };
                     c.EnableProxy();
                     Client = c;
                     Trace.WriteLine("Client successfully loaded.");
@@ -245,7 +244,7 @@ namespace SharpMapTracker
             }
             catch (Exception ex)
             {
-                Trace.WriteLine("[Error] Unable to load tibia client. Details: " + ex.StackTrace.ToString());
+                Trace.WriteLine("[Error] Unable to load tibia client. Details: " + ex.Message);
             }
         }
 
@@ -569,11 +568,6 @@ namespace SharpMapTracker
                 mapShare.Start();
             else
                 mapShare.Stop();
-        }
-
-        private void changeIPToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

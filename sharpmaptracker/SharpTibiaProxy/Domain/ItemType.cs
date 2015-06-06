@@ -33,7 +33,6 @@ namespace SharpTibiaProxy.Domain
         public bool IsStackable { get; set; }
         public bool IsReadable { get; set; }
         public bool IsMoveable { get; set; }
-        public bool IsNoMovementAnimation { get; set; }
         public bool IsPickupable { get; set; }
         public bool IsHangable { get; set; }
         public bool IsHorizontal { get; set; }

@@ -1,0 +1,7 @@
+C:\Google Drive\FanPoke\sharpmaptracker\SharpTibiaProxy\bin\Debug\SharpTibiaProxy.dll
+C:\Google Drive\FanPoke\sharpmaptracker\SharpTibiaProxy\bin\Debug\SharpTibiaProxy.pdb
+C:\Google Drive\FanPoke\sharpmaptracker\SharpTibiaProxy\bin\Debug\BouncyCastle.Crypto.dll
+C:\Google Drive\FanPoke\sharpmaptracker\SharpTibiaProxy\obj\Debug\SharpTibiaProxy.Util.ClientChooser.resources
+C:\Google Drive\FanPoke\sharpmaptracker\SharpTibiaProxy\obj\Debug\SharpTibiaProxy.csproj.GenerateResource.Cache
+C:\Google Drive\FanPoke\sharpmaptracker\SharpTibiaProxy\obj\Debug\SharpTibiaProxy.dll
+C:\Google Drive\FanPoke\sharpmaptracker\SharpTibiaProxy\obj\Debug\SharpTibiaProxy.pdb

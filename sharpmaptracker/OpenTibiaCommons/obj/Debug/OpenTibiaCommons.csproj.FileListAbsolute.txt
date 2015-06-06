@@ -1,0 +1,8 @@
+C:\Google Drive\FanPoke\sharpmaptracker\OpenTibiaCommons\bin\Debug\OpenTibiaCommons.dll
+C:\Google Drive\FanPoke\sharpmaptracker\OpenTibiaCommons\bin\Debug\OpenTibiaCommons.pdb
+C:\Google Drive\FanPoke\sharpmaptracker\OpenTibiaCommons\bin\Debug\SharpTibiaProxy.dll
+C:\Google Drive\FanPoke\sharpmaptracker\OpenTibiaCommons\bin\Debug\BouncyCastle.Crypto.dll
+C:\Google Drive\FanPoke\sharpmaptracker\OpenTibiaCommons\bin\Debug\SharpTibiaProxy.pdb
+C:\Google Drive\FanPoke\sharpmaptracker\OpenTibiaCommons\obj\Debug\OpenTibiaCommons.csprojResolveAssemblyReference.cache
+C:\Google Drive\FanPoke\sharpmaptracker\OpenTibiaCommons\obj\Debug\OpenTibiaCommons.dll
+C:\Google Drive\FanPoke\sharpmaptracker\OpenTibiaCommons\obj\Debug\OpenTibiaCommons.pdb

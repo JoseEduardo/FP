@@ -26,7 +26,7 @@ namespace SharpTibiaProxy.Domain
             return null;
         }
 
-        public bool Load(string filename, int version)
+        public bool Load(string filename)
         {
             FileStream fileStream = File.OpenRead(filename);
             try
@@ -124,62 +124,59 @@ namespace SharpTibiaProxy.Domain
                                 case 0x0F: //blocks pathfind algorithms (monsters)
                                     item.BlockPathFind = true;
                                     break;
-                                case 0x10:
-                                    item.IsNoMovementAnimation = true;
-                                    break;
-                                case 0x11: //blocks monster movement (flowers, parcels etc)
+                                case 0x10: //blocks monster movement (flowers, parcels etc)
                                     item.IsPickupable = true;
                                     break;
-                                case 0x12: //hangable objects (wallpaper etc)
+                                case 0x11: //hangable objects (wallpaper etc)
                                     item.IsHangable = true;
                                     break;
-                                case 0x13: //horizontal wall
+                                case 0x12: //horizontal wall
                                     item.IsHorizontal = true;
                                     break;
-                                case 0x14: //vertical wall
+                                case 0x13: //vertical wall
                                     item.IsVertical = true;
                                     break;
-                                case 0x15: //rotatable
+                                case 0x14: //rotatable
                                     item.IsRotatable = true;
                                     break;
-                                case 0x16: //light info
+                                case 0x15: //light info
                                     item.LightLevel = reader.ReadUInt16();
                                     item.LightColor = reader.ReadUInt16();
                                     break;
-                                case 0x17: //unknown
+                                case 0x16: //unknown
                                     break;
-                                case 0x18: //changes floor
+                                case 0x17: //changes floor
                                     break;
-                                case 0x19: //unknown
+                                case 0x18: //unknown
                                     reader.BaseStream.Seek(4, SeekOrigin.Current);
                                     break;
-                                case 0x1A:
+                                case 0x19:
                                     item.HasHeight = true;
                                     /*UInt16 height =*/
                                     reader.ReadUInt16();
                                     break;
+                                case 0x1A: //unknown
+                                    break;
                                 case 0x1B: //unknown
                                     break;
-                                case 0x1C: //unknown
-                                    break;
-                                case 0x1D: //minimap color
+                                case 0x1C: //minimap color
                                     item.MinimapColor = reader.ReadUInt16();
                                     break;
-                                case 0x1E: //in-game help info
+                                case 0x1D: //in-game help info
                                     UInt16 opt = reader.ReadUInt16();
                                     if (opt == 1112)
                                         item.IsReadable = true;
                                     break;
-                                case 0x1F: //full tile
+                                case 0x1E: //full tile
                                     item.WalkStack = true;
                                     break;
-                                case 0x20: //look through (borders)
+                                case 0x1F: //look through (borders)
                                     item.LookThrough = true;
                                     break;
-                                case 0x21: //unknown
+                                case 0x20: //unknown
                                     reader.ReadUInt16();
                                     break;
-                                case 0x22: //market
+                                case 0x21: //market
                                     reader.ReadUInt16(); // category
                                     item.WareId = reader.ReadUInt16(); // trade as
                                     reader.ReadUInt16(); // show as
@@ -187,11 +184,6 @@ namespace SharpTibiaProxy.Domain
                                     item.Name = new string(reader.ReadChars(size));
                                     reader.ReadUInt16(); // profession
                                     reader.ReadUInt16(); // level
-                                    break;
-                                case 0x23: //default action
-                                    reader.ReadUInt16();
-                                    break;
-                                case 0xFE: //is usable
                                     break;
                                 case 0xFF: //end of attributes
                                     break;
@@ -201,109 +193,40 @@ namespace SharpTibiaProxy.Domain
                             }
                         } while (optbyte >= 0 && optbyte != 0xFF);
 
-                        if (version >= ClientVersion.Version1057.Number)
+                        var width = reader.ReadByte();
+                        var height = reader.ReadByte();
+                        if ((width > 1) || (height > 1))
                         {
-                            var isOutfit = id > ItemCount ? reader.ReadByte() : 1;
-                            for (int j = 0; j < isOutfit; j++)
-                            {
-                                var frameGroup = id > ItemCount ? reader.ReadByte() : 0;
-                                var width = reader.ReadByte();
-                                var height = reader.ReadByte();
-                                if ((width > 1) || (height > 1))
-                                {
-                                    reader.BaseStream.Position++;
-                                }
-
-                                var frames = reader.ReadByte();
-                                var xdiv = reader.ReadByte();
-                                var ydiv = reader.ReadByte();
-                                var zdiv = reader.ReadByte();
-                                var animationLength = reader.ReadByte();
-                                item.IsAnimation = animationLength > 1;
-
-                                if (item.IsAnimation && version > ClientVersion.Version1041.Number)
-                                {
-                                    reader.ReadByte();
-                                    reader.ReadUInt32();
-                                    reader.ReadByte();
-                                    for (int i = 0; i < animationLength; i++)
-                                    {
-                                        reader.ReadUInt32();
-                                        reader.ReadUInt32();
-                                    }
-                                }
-
-                                var numSprites =
-                                    (UInt32)width * (UInt32)height *
-                                    (UInt32)frames *
-                                    (UInt32)xdiv * (UInt32)ydiv * zdiv *
-                                    (UInt32)animationLength;
-
-                                // Read the sprite ids
-                                for (UInt32 i = 0; i < numSprites; ++i)
-                                {
-                                    var spriteId = reader.ReadUInt32();
-                                    /*Sprite sprite;
-                                    if (!sprites.TryGetValue(spriteId, out sprite))
-                                    {
-                                        sprite = new Sprite();
-                                        sprite.id = spriteId;
-                                        sprites[spriteId] = sprite;
-                                    }
-                                    item.spriteList.Add(sprite);*/
-                                }
-                                ++id;
-                            }
+                            reader.BaseStream.Position++;
                         }
-                        else
+
+                        var frames = reader.ReadByte();
+                        var xdiv = reader.ReadByte();
+                        var ydiv = reader.ReadByte();
+                        var zdiv = reader.ReadByte();
+                        var animationLength = reader.ReadByte();
+                        item.IsAnimation = animationLength > 1;
+
+                        var numSprites =
+                            (UInt32)width * (UInt32)height *
+                            (UInt32)frames *
+                            (UInt32)xdiv * (UInt32)ydiv * zdiv *
+                            (UInt32)animationLength;
+
+                        // Read the sprite ids
+                        for (UInt32 i = 0; i < numSprites; ++i)
                         {
-                            var width = reader.ReadByte();
-                            var height = reader.ReadByte();
-                            if ((width > 1) || (height > 1))
+                            var spriteId = reader.ReadUInt32();
+                            /*Sprite sprite;
+                            if (!sprites.TryGetValue(spriteId, out sprite))
                             {
-                                reader.BaseStream.Position++;
+                                sprite = new Sprite();
+                                sprite.id = spriteId;
+                                sprites[spriteId] = sprite;
                             }
-
-                            var frames = reader.ReadByte();
-                            var xdiv = reader.ReadByte();
-                            var ydiv = reader.ReadByte();
-                            var zdiv = reader.ReadByte();
-                            var animationLength = reader.ReadByte();
-                            item.IsAnimation = animationLength > 1;
-
-                            if (item.IsAnimation && version > ClientVersion.Version1041.Number)
-                            {
-                                reader.ReadByte();
-                                reader.ReadUInt32();
-                                reader.ReadByte();
-                                for (int i = 0; i < animationLength; i++)
-                                {
-                                    reader.ReadUInt32();
-                                    reader.ReadUInt32();
-                                }
-                            }
-
-                            var numSprites =
-                                (UInt32)width * (UInt32)height *
-                                (UInt32)frames *
-                                (UInt32)xdiv * (UInt32)ydiv * zdiv *
-                                (UInt32)animationLength;
-
-                            // Read the sprite ids
-                            for (UInt32 i = 0; i < numSprites; ++i)
-                            {
-                                var spriteId = reader.ReadUInt32();
-                                /*Sprite sprite;
-                                if (!sprites.TryGetValue(spriteId, out sprite))
-                                {
-                                    sprite = new Sprite();
-                                    sprite.id = spriteId;
-                                    sprites[spriteId] = sprite;
-                                }
-                                item.spriteList.Add(sprite);*/
-                            }
-                            ++id;
+                            item.spriteList.Add(sprite);*/
                         }
+                        ++id;
                     }
                 }
             }

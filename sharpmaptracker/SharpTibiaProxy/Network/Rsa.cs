@@ -34,7 +34,7 @@ namespace SharpTibiaProxy.Network
 
         public static void OpenTibiaDecrypt(InMessage msg)
         {
-            if (msg.Size - msg.ReadPosition < 128)
+            if (msg.Size - msg.ReadPosition != 128)
                 throw new Exception("Invalid message size.");
 
             var decrypted = openTibiaDecryptEngine.ProcessBlock(msg.Buffer, msg.ReadPosition, 128);

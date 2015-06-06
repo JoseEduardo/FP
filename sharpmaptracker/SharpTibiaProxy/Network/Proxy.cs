@@ -58,15 +58,13 @@ namespace SharpTibiaProxy.Network
 			loginClientPort = GetFreePort();
 			worldClientPort = GetFreePort(loginClientPort + 1);
 
-			if (!client.IsOpenTibiaServer && client.LoginServers[0].Server == "127.0.0.1")
+			if (!client.IsOpenTibiaServer && client.LoginServers[0].Server == "localhost")
 				loginServers = Client.DefaultServers;
 			else
 				loginServers = client.LoginServers;
 
-			client.LoginServers = new LoginServer[] { new LoginServer("127.0.0.1", loginClientPort) };
-            
-            if (client.Version.Number == ClientVersion.Version1011.Number)
-                Util.Memory.WriteBytes(client.ProcessHandle, client.MemoryAddresses.ClientProxyCheckFunctionPointer, client.MemoryAddresses.ClientProxyCheckFunctionNOP, 15);
+
+			client.LoginServers = new LoginServer[] { new LoginServer("localhost", loginClientPort) };
 
 			clientInMessage = new InMessage();
 			clientOutMessage = new OutMessage();
@@ -81,11 +79,8 @@ namespace SharpTibiaProxy.Network
 		{
 			Close();
 
-            if (client.Version.Number == ClientVersion.Version1011.Number)
-                Util.Memory.WriteBytes(client.ProcessHandle, client.MemoryAddresses.ClientProxyCheckFunctionPointer, client.MemoryAddresses.ClientProxyCheckFunctionOriginal, 15);
-
-            if (!client.HasExited)
-                client.LoginServers = loginServers;
+			if (!client.HasExited)
+				client.LoginServers = loginServers;
 		}
 
 		private void StartListen()
@@ -151,23 +146,8 @@ namespace SharpTibiaProxy.Network
 						clientSocket = worldClientSocket.EndAccept(ar);
 
 						serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                        CharacterLoginInfo selectedChar = charList[client.SelectedChar];
-
-                        if (client.Version.Number == ClientVersion.Version1011.Number)
-                        {
-                            if (selectedChar.WorldIP == 0)
-                            {
-                                serverSocket.Connect(new IPEndPoint(Dns.GetHostAddresses("game.tibia.ciproxy.com")[0], selectedChar.WorldPort));
-                            }
-                            else
-                            {
-                                serverSocket.Connect(new IPEndPoint(selectedChar.WorldIP, selectedChar.WorldPort));
-                            }
-                        }
-                        else
-                        {
-                            serverSocket.Connect(new IPEndPoint(selectedChar.WorldIP, selectedChar.WorldPort));
-                        }
+						CharacterLoginInfo selectedChar = charList[client.SelectedChar];
+						serverSocket.Connect(new IPEndPoint(selectedChar.WorldIP, selectedChar.WorldPort));
 
 						serverInMessage.Reset();
 						serverSocket.BeginReceive(serverInMessage.Buffer, 0, 2, SocketFlags.None, ServerReceiveCallback, null);
@@ -329,13 +309,6 @@ namespace SharpTibiaProxy.Network
 					case 0x0B: //For your information
 						serverInMessage.ReadString();
 						break;
-                    case 0x0C: //token succes
-                    case 0x0D: //token error
-                        serverInMessage.ReadByte();
-                        break;
-                    case 0x11: //update
-                        serverInMessage.ReadString();
-                        break;
 					case 0x14: //MOTD
 						serverInMessage.ReadString();
 						break;
@@ -344,72 +317,22 @@ namespace SharpTibiaProxy.Network
 					case 0x20:
 						//DisconnectClient(0x0A, "A new client is avalible, please download it first!");
 						break;
-					case 0x28: //session key
-                        serverInMessage.ReadString();
+					case 0x28: //Select other login server
+						//selectedLoginServer = random.Next(0, loginServers.Length - 1);
 						break;
-                    case 0x64: //character list
-                        if (client.Version.Number <= ClientVersion.Version1011.Number)
-                        {
-                            int nChar = (int)serverInMessage.ReadByte();
-                            charList = new CharacterLoginInfo[nChar];
+					case 0x64: //character list
+						int nChar = (int)serverInMessage.ReadByte();
+						charList = new CharacterLoginInfo[nChar];
 
-                            for (int i = 0; i < nChar; i++)
-                            {
-                                charList[i].CharName = serverInMessage.ReadString();
-                                charList[i].WorldName = serverInMessage.ReadString();
-                                clientOutMessage.WriteAt(new byte[] { 127, 0, 0, 1 }, serverInMessage.ReadPosition);
-                                charList[i].WorldIP = serverInMessage.ReadUInt();
-                                clientOutMessage.WriteAt(BitConverter.GetBytes((ushort)worldClientPort), serverInMessage.ReadPosition);
-                                charList[i].WorldPort = serverInMessage.ReadUShort();
-
-                                if (client.Version.Number >= ClientVersion.Version981.Number)
-                                    serverInMessage.ReadByte(); //isPreviewWorld
-                            }
-
-                            if (client.Version.Number >= ClientVersion.Version1011.Number)
-                                serverInMessage.ReadUShort(); //PremiumTime
-                        }
-                        else if (client.Version.Number >= ClientVersion.Version1012.Number)
-                        {
-                            clientOutMessage.WritePosition = serverInMessage.ReadPosition;
-
-                            byte nWorlds = serverInMessage.ReadByte();
-                            clientOutMessage.WriteByte(nWorlds);
-                            WorldLoginInfo[] worldList = new WorldLoginInfo[nWorlds];
-                            for (byte i = 0; i < nWorlds; i++)
-                            {
-                                worldList[i].ID = serverInMessage.ReadByte();
-                                clientOutMessage.WriteByte(worldList[i].ID);
-                                worldList[i].Name = serverInMessage.ReadString();
-                                clientOutMessage.WriteString(worldList[i].Name);
-                                worldList[i].Hostname = serverInMessage.ReadString();
-                                clientOutMessage.WriteString("127.0.0.1");
-                                worldList[i].Port = serverInMessage.ReadUShort();
-                                clientOutMessage.WriteUShort((ushort)worldClientPort);
-                                worldList[i].IsPreviewWorld = serverInMessage.ReadBool();
-                                clientOutMessage.WriteByte(Convert.ToByte(worldList[i].IsPreviewWorld));
-                            }
-
-                            byte nChars = serverInMessage.ReadByte();
-                            clientOutMessage.WriteByte(nChars);
-                            charList = new CharacterLoginInfo[nChars];
-                            for (byte j = 0; j < nChars; j++)
-                            {
-                                byte WorldID = serverInMessage.ReadByte();
-                                clientOutMessage.WriteByte(WorldID);
-                                charList[j].CharName = serverInMessage.ReadString();
-                                clientOutMessage.WriteString(charList[j].CharName);
-                                charList[j].WorldName = worldList[WorldID].Name;
-                                charList[j].WorldIP = BitConverter.ToUInt32(Dns.GetHostAddresses(worldList[WorldID].Hostname)[0].GetAddressBytes(), 0);
-                                charList[j].WorldPort = worldList[WorldID].Port;
-                                charList[j].WorldIPString = worldList[WorldID].Hostname;
-                            }
-
-                            ushort PremiumTime = serverInMessage.ReadUShort();
-                            clientOutMessage.WriteUShort(PremiumTime);
-
-                            clientOutMessage.Size = clientOutMessage.WritePosition;
-                        }
+						for (int i = 0; i < nChar; i++)
+						{
+							charList[i].CharName = serverInMessage.ReadString();
+							charList[i].WorldName = serverInMessage.ReadString();
+							clientOutMessage.WriteAt(new byte[] { 127, 0, 0, 1 }, serverInMessage.ReadPosition);
+							charList[i].WorldIP = serverInMessage.ReadUInt();
+							clientOutMessage.WriteAt(BitConverter.GetBytes((ushort)worldClientPort), serverInMessage.ReadPosition);
+							charList[i].WorldPort = serverInMessage.ReadUShort();
+						}
 						break;
 					default:
 						break;
@@ -542,36 +465,18 @@ namespace SharpTibiaProxy.Network
 			if (protocolId == 0x01) //Login
 			{
 				protocol = Protocol.Login;
-                ushort clientType = clientInMessage.ReadUShort();
-                ushort protocolVersion = clientInMessage.ReadUShort();
+				clientInMessage.ReadUShort();
+				ushort clientVersion = clientInMessage.ReadUShort();
 
-                if (client.Version.Number >= ClientVersion.Version981.Number)
-                {
-                    uint clientVersion = clientInMessage.ReadUInt();
-                }
-
-				uint datSignature = clientInMessage.ReadUInt();
-				uint sprSignature = clientInMessage.ReadUInt();
-				uint picSignature = clientInMessage.ReadUInt();
-
-                if (client.Version.Number >= ClientVersion.Version981.Number)
-                {
-                    byte clientPreviewState = clientInMessage.ReadByte();
-                }
+				clientInMessage.ReadUInt();
+				clientInMessage.ReadUInt();
+				clientInMessage.ReadUInt();
 
 				Rsa.OpenTibiaDecrypt(clientInMessage);
 
-                if (client.Version.Number >= ClientVersion.Version1073.Number)
-                {
-                    int tempPos = clientInMessage.ReadPosition;
-                    clientInMessage.ReadPosition = clientInMessage.Size - 128;
-                    Rsa.OpenTibiaDecrypt(clientInMessage);
-                    clientInMessage.ReadPosition = tempPos;
-                }
-
-                Array.Copy(clientInMessage.Buffer, serverOutMessage.Buffer, clientInMessage.Size);
-                serverOutMessage.Size = clientInMessage.Size;
-                serverOutMessage.WritePosition = clientInMessage.ReadPosition - 1; //the first byte is zero
+				Array.Copy(clientInMessage.Buffer, serverOutMessage.Buffer, clientInMessage.Size);
+				serverOutMessage.Size = clientInMessage.Size;
+				serverOutMessage.WritePosition = clientInMessage.ReadPosition - 1; //the first byte is zero
 
 				xteaKey = new uint[4];
 				xteaKey[0] = clientInMessage.ReadUInt();
@@ -582,19 +487,10 @@ namespace SharpTibiaProxy.Network
 				var acc = clientInMessage.ReadString(); //account name
 				var pass = clientInMessage.ReadString(); //password
 
-                if (client.IsOpenTibiaServer)
-                {
-                    Rsa.OpenTibiaEncrypt(serverOutMessage);
-                }
-                else
-                {
-                    Rsa.RealTibiaEncrypt(serverOutMessage);
-                    if (client.Version.Number >= ClientVersion.Version1073.Number)
-                    {
-                        serverOutMessage.WritePosition = serverOutMessage.Size - 128;
-                        Rsa.RealTibiaEncrypt(serverOutMessage);
-                    }
-                }
+				if (client.IsOpenTibiaServer)
+					Rsa.OpenTibiaEncrypt(serverOutMessage);
+				else
+					Rsa.RealTibiaEncrypt(serverOutMessage);
 
 				Adler.Generate(serverOutMessage, true);
 				serverOutMessage.WriteHead();
@@ -611,17 +507,8 @@ namespace SharpTibiaProxy.Network
 			{
 				protocol = Protocol.World;
 
-				ushort clientType = clientInMessage.ReadUShort();
-				ushort protocolVersion = clientInMessage.ReadUShort();
-
-                if (client.Version.Number >= ClientVersion.Version981.Number)
-                {
-                    uint clientVersion = clientInMessage.ReadUInt();
-                    ushort contentRevision = 0;
-                    if (client.Version.Number >= ClientVersion.Version1071.Number)
-                        contentRevision = clientInMessage.ReadUShort();
-                    byte clientPreviewState = clientInMessage.ReadByte();
-                }
+				clientInMessage.ReadUShort();
+				ushort clientVersion = clientInMessage.ReadUShort();
 
 				Rsa.OpenTibiaDecrypt(clientInMessage);
 
@@ -637,10 +524,9 @@ namespace SharpTibiaProxy.Network
 
 				clientInMessage.ReadByte();
 
-				//var accountName = clientInMessage.ReadString();
-                var sessionKey = clientInMessage.ReadString();
+				var accountName = clientInMessage.ReadString();
 				var characterName = clientInMessage.ReadString();
-				//var password = clientInMessage.ReadString();
+				var password = clientInMessage.ReadString();
 
 				if (client.IsOpenTibiaServer)
 					Rsa.OpenTibiaEncrypt(serverOutMessage);

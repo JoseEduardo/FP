@@ -229,7 +229,7 @@ namespace SharpTibiaProxy.Network
             return value;
         }
 
-        public ulong ReadULong()
+        public object ReadULong()
         {
             CanRead(8);
             var value = BitConverter.ToUInt64(m_buffer, m_readPosition);

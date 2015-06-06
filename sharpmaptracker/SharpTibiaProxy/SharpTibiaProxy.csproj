@@ -30,7 +30,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>
@@ -41,19 +40,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
@@ -70,13 +65,11 @@
     <Compile Include="Domain\Location.cs" />
     <Compile Include="Domain\LoginServer.cs" />
     <Compile Include="Domain\Map.cs" />
-    <Compile Include="Domain\Market.cs" />
     <Compile Include="Domain\Outfit.cs" />
     <Compile Include="Domain\MessageClasses.cs" />
     <Compile Include="Domain\Shop.cs" />
     <Compile Include="Domain\ShopItem.cs" />
     <Compile Include="Domain\Skills.cs" />
-    <Compile Include="Domain\TextBoxTraceListener.cs" />
     <Compile Include="Domain\Thing.cs" />
     <Compile Include="Domain\Tile.cs" />
     <Compile Include="Extensions.cs" />

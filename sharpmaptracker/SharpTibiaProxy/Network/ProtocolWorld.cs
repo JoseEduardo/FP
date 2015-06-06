@@ -31,21 +31,6 @@ namespace SharpTibiaProxy.Network
                     case 0x96:
                         ParseClientSay(message);
                         break;
-                    case 0xF4://244
-                        ParseClientMarketLeave(message);
-                        break;
-                    case 0xF5://245
-                        ParseClientMarketBrowse(message);
-                        break;
-                    case 0xF6://246
-                        ParseClientMarketCreate(message);
-                        break;
-                    case 0xF7://247
-                        ParseClientMarketCancel(message);
-                        break;
-                    case 0xF8://248
-                        ParseClientMarketAccept(message);
-                        break;
                 }
 
             }
@@ -84,38 +69,6 @@ namespace SharpTibiaProxy.Network
             client.Chat.OnPlayerSpeak(receiver, channelId, type, text);
         }
 
-        private void ParseClientMarketLeave(InMessage message)
-        {
-
-        }
-
-        private void ParseClientMarketBrowse(InMessage message)
-        {
-            ushort ItemId = message.ReadUShort();
-        }
-
-        private void ParseClientMarketCreate(InMessage message)
-        {
-            OfferKind Kind = (OfferKind)message.ReadByte();
-            ushort ItemId = message.ReadUShort();
-            ushort Amount = message.ReadUShort();
-            uint PiecePrice = message.ReadUInt();
-            bool IsAnonymous = message.ReadBool();
-        }
-
-        private void ParseClientMarketCancel(InMessage message)
-        {
-            uint Timestamp = message.ReadUInt();
-            uint Counter = message.ReadUShort();
-        }
-
-        private void ParseClientMarketAccept(InMessage message)
-        {
-            uint Timestamp = message.ReadUInt();
-            ushort Counter = message.ReadUShort();
-            ushort Amount = message.ReadUShort();
-        }
-
         #endregion
 
         #region ParseServer
@@ -135,16 +88,10 @@ namespace SharpTibiaProxy.Network
                     switch (cmd)
                     {
                         case 0x0A:
-                            if (client.Version.Number >= ClientVersion.Version981.Number)
-                                ParseServerPendingStateEntered(message);
-                            else
-                                ParseServerSelfAppear(message);
+                            ParseServerSelfAppear(message);
                             break;
                         case 0x0B:
                             ParseServerGMActions(message);
-                            break;
-                        case 0x0F:
-                            ParseServerWorldEntered(message);
                             break;
                         case 0x14:
                             ParseServerErrorMessage(message);
@@ -154,9 +101,6 @@ namespace SharpTibiaProxy.Network
                             break;
                         case 0x16:
                             ParseServerWaitingList(message);
-                            break;
-                        case 0x17:
-                            ParseServerLoginSuccess(message);
                             break;
                         case 0x1D:
                             ParseServerPing(message);
@@ -271,31 +215,11 @@ namespace SharpTibiaProxy.Network
                         case 0x92:
                             ParseServerCreaturePassable(message);
                             break;
-                        case 0x93:
-                            ParseServerCreatureMarks(message);
-                            break;
-                        case 0x94:
-                            ParseServerCreaturePVPHelpers(message);
-                            break;
-                        case 0x95:
-                            ParseServerCreatureType(message);
-                            break;
                         case 0x96:
                             ParseServerItemTextWindow(message);
                             break;
                         case 0x97:
                             ParseServerHouseTextWindow(message);
-                            break;
-                        case 0x9C:
-                            //ParseServerBlessings(message);
-                            message.ReadUShort();
-                            break;
-                        case 0x9D:
-                            //ParseServerSwitchPreset(message);
-                            message.ReadUInt();
-                            break;
-                        case 0x9E:
-                            ParseServerPremiumTrigger(message);
                             break;
                         case 0xA0:
                             ParseServerPlayerStats(message);
@@ -318,9 +242,6 @@ namespace SharpTibiaProxy.Network
                         case 0xA6: //desconhecido
                             message.ReadUInt();
                             break;
-                        case 0xA7:
-                            ParseServerSetTactics(message);
-                            break;
                         case 0xAA:
                             ParseServerCreatureSpeak(message);
                             break;
@@ -334,8 +255,7 @@ namespace SharpTibiaProxy.Network
                             ParseServerOpenPrivatePlayerChat(message);
                             break;
                         case 0xAE:
-                            //ParseServerOpenRuleViolation(message);
-                            ParseServerEditGuildMessage(message);
+                            ParseServerOpenRuleViolation(message);
                             break;
                         case 0xB2:
                             ParseServerCreatePrivateChannel(message);
@@ -351,14 +271,6 @@ namespace SharpTibiaProxy.Network
                             break;
                         case 0xB6:
                             message.ReadUShort();
-                            break;
-                        case 0xB7:
-                            //ParseServerUnjustifiedPoints(message);
-                            message.ReadBytes(7);
-                            break;
-                        case 0xB8:
-                            //ParseServerPvpSituations(message);
-                            message.ReadByte();
                             break;
                         case 0xBE:
                             ParseServerFloorChangeUp(message);
@@ -418,7 +330,7 @@ namespace SharpTibiaProxy.Network
                             ParseServerMarketBrowser(message);
                             break;
                         default:
-                            throw new Exception("ProtocolWorld [ParseServerMessage]: Unknown packet type " + cmd.ToString("X2"));
+                            throw new Exception("ProtocolWorld [ParseServerMessage]: Unkonw packet type " + cmd.ToString("X2"));
                     }
                 }
 
@@ -430,86 +342,6 @@ namespace SharpTibiaProxy.Network
             }
         }
 
-        private double ReadDouble(InMessage message)
-        {
-            var loc2 = message.ReadByte();
-            var loc3 = message.ReadUInt();
-            return (loc3 - int.MaxValue) / Math.Pow(10, loc2);
-        }
-
-        private void ParseServerEditGuildMessage(InMessage message)
-        {
-            var guildMOTD = message.ReadString();
-        }
-
-        private void ParseServerPremiumTrigger(InMessage message)
-        {
-            var count = message.ReadByte();
-            for (int i = 0; i < count; i++)
-                message.ReadByte();
-            var notification = message.ReadByte();
-        }
-
-        private void ParseServerCreaturePVPHelpers(InMessage message)
-        {
-            var CreatureId = message.ReadUInt();
-            var NumberOfPVPHelpers = message.ReadUShort();
-        }
-
-        private void ParseServerSetTactics(InMessage message)
-        {
-            var CombatAttackMode = message.ReadByte();
-            var CombatChaseMode = message.ReadByte();
-            var CombatSecureMode = message.ReadByte();
-            var CombatPVPMode = message.ReadByte();
-        }
-
-        private void ParseServerCreatureType(InMessage message)
-        {
-            var CreatureId = message.ReadUInt();
-            var Type = message.ReadByte();
-        }
-
-        private void ParseServerCreatureMarks(InMessage message)
-        {
-            var loc2 = 1;
-
-            if (client.Version.Number < ClientVersion.Version1035.Number)
-                loc2 = message.ReadByte();
-
-            for (int i = 0; i < loc2; i++)
-            {
-                var CreatureId = message.ReadUInt();
-                var MarkType = message.ReadByte();
-                var Mark = message.ReadByte();
-            }
-        }
-
-        private void ParseServerPendingStateEntered(InMessage message)
-        {
-        }
-
-        private void ParseServerWorldEntered(InMessage message)
-        {
-        }
-
-        private void ParseServerLoginSuccess(InMessage message)
-        {
-            client.BattleList.Clear();
-            client.Map.Clear();
-
-            client.PlayerId = message.ReadUInt();
-            var BeatDuration = message.ReadUShort();
-            var CreatureSpeedA = ReadDouble(message);
-            var CreatureSpeedB = ReadDouble(message);
-            var CreatureSpeedC = ReadDouble(message);
-            client.PlayerCanReportBugs = message.ReadByte().Equals(0x1);
-            client.CanChangePvpFraming = message.ReadByte().Equals(0x1);
-
-            if (client.Version.Number >= ClientVersion.Version1059.Number)
-                client.ExpertModeButtonEnabled = message.ReadByte().Equals(0x1);
-        }
-
         private void ParseServerChannelEvent(InMessage message)
         {
             var channelId = message.ReadUShort();
@@ -519,114 +351,95 @@ namespace SharpTibiaProxy.Network
 
         private void ParseServerMarketEnter(InMessage message)
         {
-            if (client.Version.Number >= ClientVersion.Version981.Number)
-                client.Market.AccountBalance = message.ReadULong();
-            else
-                client.Market.AccountBalance = message.ReadUInt();
-
-            client.Market.ActiveOffers = message.ReadByte();
-
-            client.Market.DepotContent.Clear();
+            message.ReadUInt();
+            message.ReadByte();
             var num = message.ReadUShort();
             for (int i = 0; i < num; i++)
-            {
-                ushort ItemID = message.ReadUShort();
-                ushort Count = message.ReadUShort();
-                client.Market.DepotContent.Add(new DepotObject(ItemID, Count));
-            }
+                message.ReadUInt();
         }
 
         private void ParseServerMarketDetail(InMessage message)
         {
-            client.Market.BrowseType = message.ReadUShort(); //?
-
-            client.Market.BrowseDetails.Clear();
+            message.ReadUShort();
             for (int i = 0; i < 15; i++)
-            {
-                client.Market.BrowseDetails.Add(message.ReadString()); //?
-            }
+                message.ReadString();
 
-            client.Market.OfferStatistics.Clear();
-
-            DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0).ToUniversalTime();
-            double TimeStamp = dt.Millisecond / (1000 * 86400);
-            double ts1 = TimeStamp;
-            int num1 = message.ReadByte() - 1;
-            while (num1 >= 0)
-            {
-                ts1 -= 86400;
-                uint TotalTransactions = message.ReadUInt();
-                uint TotalPrice = message.ReadUInt();
-                uint MaximumPrice = message.ReadUInt();
-                uint MinimumPrice = message.ReadUInt();
-                client.Market.OfferStatistics.Add(new OfferStatistic(ts1, OfferKind.Buy, TotalTransactions, TotalPrice, MaximumPrice, MinimumPrice));
-                num1--;
-            }
-
-            double ts2 = TimeStamp;
-            int num2 = message.ReadByte() - 1;
-            while (num2 >= 0)
-            {
-                ts2 -= 86400;
-                uint TotalTransactions = message.ReadUInt();
-                uint TotalPrice = message.ReadUInt();
-                uint MaximumPrice = message.ReadUInt();
-                uint MinimumPrice = message.ReadUInt();
-                client.Market.OfferStatistics.Add(new OfferStatistic(ts2, OfferKind.Sell, TotalTransactions, TotalPrice, MaximumPrice, MinimumPrice));
-                num2--;
-            }
+            var num2 = message.ReadByte();
+            if (num2 > 0)
+                message.ReadBytes(num2 * 16);
+            num2 = message.ReadByte();
+            if (num2 > 0)
+                message.ReadBytes(num2 * 16);
         }
 
         private void ParseServerMarketBrowser(InMessage message)
         {
-            ushort Request = message.ReadUShort();
-            client.Market.Offers.Clear();
-            int num1 = (int)message.ReadUInt() - 1;
-            while (num1 >= 0)
+            ushort num = message.ReadUShort();
+            if (num == 65535)
             {
-                ReadMarketOffer(message, OfferKind.Buy, Request);
-                num1--;
+                var count = message.ReadUInt();
+                for (int i = 0; i < count; i++)
+                {
+                    message.ReadUInt();
+                    message.ReadUShort();
+                    message.ReadUShort();
+                    message.ReadUShort();
+                    message.ReadUInt();
+                    message.ReadByte();
+                }
+                count = message.ReadUInt();
+                for (int j = 0; j <= count; j++)
+                {
+                    message.ReadUInt();
+                    message.ReadUShort();
+                    message.ReadUShort();
+                    message.ReadUShort();
+                    message.ReadUInt();
+                    message.ReadByte();
+                }
             }
-            num1 = (int)message.ReadUInt() - 1;
-            while (num1 >= 0)
+            else if (num == 65534)
             {
-                ReadMarketOffer(message, OfferKind.Sell, Request);
-                num1--;
+                var count = message.ReadUInt();
+                for (int k = 0; k <= count; k++)
+                {
+                    message.ReadUInt();
+                    message.ReadUShort();
+                    message.ReadUShort();
+                    message.ReadUShort();
+                    message.ReadUInt();
+                }
+                count = message.ReadUInt();
+                for (int l = 0; l <= count; l++)
+                {
+                    message.ReadUInt();
+                    message.ReadUShort();
+                    message.ReadUShort();
+                    message.ReadUShort();
+                    message.ReadUInt();
+                }
             }
-        }
-
-        private void ReadMarketOffer(InMessage message, OfferKind offer, ushort request)
-        {
-            uint Timestamp = message.ReadUInt();
-            ushort Counter = message.ReadUShort();
-            ushort TypeId = 0;
-            switch (request)
+            else
             {
-                case 65534:
-                case 65535:
-                    TypeId = message.ReadUShort();
-                    break;
-                default:
-                    TypeId = request;
-                    break;
+                var count = message.ReadUInt();
+                for (int m = 0; m < count; m++)
+                {
+                    message.ReadUInt();
+                    message.ReadUShort();
+                    message.ReadUShort();
+                    message.ReadUInt();
+                    message.ReadString();
+                }
+                count = message.ReadUInt();
+                for (int n = 0; n < count; n++)
+                {
+                    message.ReadUInt();
+                    message.ReadUShort();
+                    message.ReadUShort();
+                    message.ReadUInt();
+                    message.ReadString();
+                }
             }
-            ushort Amount = message.ReadUShort();
-            uint PiecePrice = message.ReadUInt();
-            string Character = "";
-            TerminationType TerminationType = Domain.TerminationType.Active;
-            switch (request)
-            {
-                case 65534:
-                    break;
-                case 65535:
-                    TerminationType = (TerminationType)message.ReadByte();
-                    break;
-                default:
-                    Character = message.ReadString();
-                    break;
-            }
-
-            client.Market.Offers.Add(new Offer(new OfferId(Timestamp, Counter), offer, TypeId, Amount, PiecePrice, Character, TerminationType));
         }
 
         private void ParseServerMarketLeave(InMessage message)
@@ -636,8 +449,6 @@ namespace SharpTibiaProxy.Network
         private void ParseServerBasicData(InMessage message)
         {
             var isPremmium = message.ReadByte();
-            if (client.Version.Number >= ClientVersion.Version1038.Number)
-                message.ReadUInt(); //PremiumTime
             var vocation = message.ReadByte();
 
             var knowSpells = message.ReadUShort();
@@ -663,13 +474,7 @@ namespace SharpTibiaProxy.Network
 
         private void ParseServerPlayerCash(InMessage message)
         {
-            ulong cash;
-
-            if (client.Version.Number >= ClientVersion.Version981.Number)
-                cash = message.ReadULong();
-            else
-                cash = message.ReadUInt();
-
+            var cash = message.ReadUInt();
             var num = message.ReadByte();
             message.ReadBytes(num * 3);
         }
@@ -724,10 +529,6 @@ namespace SharpTibiaProxy.Network
         private void ParseServerVipLogin(InMessage message)
         {
             var creatureID = message.ReadUInt();
-
-            byte connectionStatus;
-            if (client.Version.Number >= ClientVersion.Version981.Number)
-                connectionStatus = message.ReadByte();
         }
 
         private void ParseServerVipState(InMessage message)
@@ -737,12 +538,12 @@ namespace SharpTibiaProxy.Network
 
             if (client.Version.Number > ClientVersion.Version961.Number)
             {
-                var description = message.ReadString();
-                var icon = message.ReadUInt();
-                var notifyAtLogin = message.ReadByte().Equals(0x1);
+                var unk1 = message.ReadString();
+                var unk2 = message.ReadUInt();
+                var unk3 = message.ReadByte();
             }
 
-            var connectionStatus = message.ReadByte();
+            var unk4 = message.ReadByte(); //status?
         }
 
         private void ParseServerOutfitWindow(InMessage message)
@@ -770,18 +571,6 @@ namespace SharpTibiaProxy.Network
 
             switch (mClass)
             {
-                case MessageClasses.CHANNEL_MANAGEMENT:
-                    {
-                        var channelId = message.ReadUShort();
-                        break;
-                    }
-                case MessageClasses.EVENT_GUILD:
-                case MessageClasses.PARTY_MANAGEMENT:
-                case MessageClasses.PARTY:
-                    {
-                        var channelId = message.ReadUShort();
-                        break;
-                    }
                 case MessageClasses.DAMAGE_DEALT:
                 case MessageClasses.DAMAGE_RECEIVED:
                 case MessageClasses.DAMAGE_OTHERS:
@@ -824,14 +613,9 @@ namespace SharpTibiaProxy.Network
             var channelId = message.ReadUShort();
             var name = message.ReadString();
 
-            var playersJoined = message.ReadUShort();
-            for (int i = 0; i < playersJoined; i++)
-                message.ReadString();
-
-            var playersInvited = message.ReadUShort();
-            for (int i = 0; i < playersInvited; i++)
-                message.ReadString();
-
+            message.ReadUShort();
+            message.ReadString();
+            message.ReadUShort();
         }
 
         //private void ParseServerRuleViolationB1(InMessage message)
@@ -870,7 +654,6 @@ namespace SharpTibiaProxy.Network
             num = message.ReadUShort();
             for (int i = 0; i < num; i++)
                 message.ReadString();
-
         }
 
         private void ParseServerChannelList(InMessage message)
@@ -899,7 +682,7 @@ namespace SharpTibiaProxy.Network
                 case MessageClasses.SPEAK_MONSTER_SAY:
                 case MessageClasses.SPEAK_MONSTER_YELL:
                 case MessageClasses.SPEAK_SPELL:
-                case MessageClasses.NPC_FROM_START_BLOCK:
+                case MessageClasses.NPC_FROM:
                     location = message.ReadLocation();
                     break;
                 case MessageClasses.CHANNEL:
@@ -954,9 +737,7 @@ namespace SharpTibiaProxy.Network
         private void ParseServerCreatureSpeed(InMessage message)
         {
             var creatureID = message.ReadUInt();
-            var baseSpeed = message.ReadUShort();
-            if (client.Version.Number >= ClientVersion.Version1059.Number)
-                message.ReadUShort(); //speed
+            var speed = message.ReadUShort();
         }
 
         private void ParseServerCreatureOutfit(InMessage message)
@@ -1052,44 +833,19 @@ namespace SharpTibiaProxy.Network
         private void ParseServerContainerRemoveItem(InMessage message)
         {
             var cid = message.ReadByte();
-
-            if (client.Version.Number < ClientVersion.Version986.Number)
-            {
-                var slot = message.ReadByte();
-            }
-            else if (client.Version.Number >= ClientVersion.Version986.Number)
-            {
-                var slot = message.ReadUShort();
-                message.ReadUShort();
-                //Item item = GetItem(message, ushort.MaxValue);
-            }
+            var slot = message.ReadByte();
         }
 
         private void ParseServerContainerUpdateItem(InMessage message)
         {
             var cid = message.ReadByte();
-
-            if (client.Version.Number < ClientVersion.Version986.Number)
-            {
-                var slot = message.ReadByte();
-            }
-            else if (client.Version.Number >= ClientVersion.Version986.Number)
-            {
-                var slot = message.ReadUShort();
-            }
-
+            var slot = message.ReadByte();
             Item item = GetItem(message, ushort.MaxValue);
         }
 
         private void ParseServerContainerAddItem(InMessage message)
         {
             var cid = message.ReadByte();
-
-            if (client.Version.Number >= ClientVersion.Version986.Number)
-            {
-                var slot = message.ReadUShort();
-            }
-
             Item item = GetItem(message, ushort.MaxValue);
         }
 
@@ -1100,41 +856,18 @@ namespace SharpTibiaProxy.Network
 
         private void ParseServerOpenContainer(InMessage message)
         {
-            if (client.Version.Number < ClientVersion.Version986.Number)
-            {
-                var containerId = message.ReadByte();
-                var containerItem = GetItem(message, ushort.MaxValue);
-                var name = message.ReadString();
-                var capacity = message.ReadByte();
-                var hasParent = message.ReadByte();
-                var itemCount = message.ReadByte();
+            var containerId = message.ReadByte();
+            var containerItem = GetItem(message, ushort.MaxValue);
+            var name = message.ReadString();
+            var capacity = message.ReadByte();
+            var hasParent = message.ReadByte();
+            var itemCount = message.ReadByte();
 
-                for (uint i = 0; i < itemCount; ++i)
-                {
-                    Item item = GetItem(message, ushort.MaxValue);
-                    if (item == null)
-                        throw new Exception("Container Open - !item");
-                }
-            }
-            else if (client.Version.Number >= ClientVersion.Version986.Number)
+            for (uint i = 0; i < itemCount; ++i)
             {
-                var containerId = message.ReadByte();
-                var containerItem = GetItem(message, ushort.MaxValue);
-                var name = message.ReadString();
-                var numberOfSlotsPerPage = message.ReadByte();
-                var isSubContainer = message.ReadByte().Equals(0x1);
-                var isDragAndDropEnabled = message.ReadByte().Equals(0x1);
-                var isPaginationEnabled = message.ReadByte().Equals(0x1);
-                var numberOfTotalObjects = message.ReadUShort();
-                var indexOfFirstObject = message.ReadUShort();
-                var numberOfContentObjects = message.ReadByte();
-
-                for (uint i = 0; i < numberOfContentObjects; ++i)
-                {
-                    Item item = GetItem(message, ushort.MaxValue);
-                    if (item == null)
-                        throw new Exception("Container Open - !item");
-                }
+                Item item = GetItem(message, ushort.MaxValue);
+                if (item == null)
+                    throw new Exception("Container Open - !item");
             }
         }
 
@@ -1233,11 +966,6 @@ namespace SharpTibiaProxy.Network
 
         private void ParseServerDeath(InMessage message)
         {
-            byte deathType = message.ReadByte();
-            if (deathType == 0)
-            {
-                byte fairFightFactor = message.ReadByte();
-            }
         }
 
         private void ParseServerPlayerCancelAttack(InMessage message)
@@ -1254,16 +982,8 @@ namespace SharpTibiaProxy.Network
         {
             for (int i = 0; i <= (int)Skills.LAST; i++)
             {
-                if (client.Version.Number >= ClientVersion.Version1035.Number)
-                {
-                    var skill = message.ReadUShort();
-                    var skillBase = message.ReadUShort();
-                }
-                else
-                {
-                    var skill = message.ReadByte();
-                    var skillBase = message.ReadByte();
-                }
+                var skill = message.ReadByte();
+                var skillBase = message.ReadByte();
                 var skillPercent = message.ReadByte();
             }
         }
@@ -1280,8 +1000,6 @@ namespace SharpTibiaProxy.Network
 
             var level = message.ReadUShort();
             var levelPercent = message.ReadByte();
-
-            var experienceBonus = ReadDouble(message);
 
             var mana = message.ReadUShort();
             var manaMax = message.ReadUShort();
@@ -1601,26 +1319,8 @@ namespace SharpTibiaProxy.Network
                 creature.Skull = message.ReadByte();
                 creature.Shield = message.ReadByte();
 
-                if (thingId == 0x0061) // emblem/guildflag is sent only in packet type 0x61
-                {
-                    if (client.Version.Number <= ClientVersion.Version986.Number)
-                    {
-                        creature.Emblem = message.ReadByte();
-                    }
-                    if (client.Version.Number >= ClientVersion.Version1010.Number)
-                    {
-                        var GuildFlag = message.ReadByte();
-                    }
-                }
-
-                if (client.Version.Number >= ClientVersion.Version1010.Number)
-                {
-                    creature.Type = (CreatureType)message.ReadByte();
-                    if (client.Version.Number >= ClientVersion.Version1036.Number)
-                        message.ReadByte(); //Speech Category
-                    var Mark = message.ReadByte();
-                    var NumberOfPVPHelpers = message.ReadUShort();
-                }
+                if (thingId == 0x0061) // emblem is sent only in packet type 0x61
+                    creature.Emblem = message.ReadByte();
 
                 creature.IsImpassable = message.ReadBool();
 
@@ -1650,22 +1350,18 @@ namespace SharpTibiaProxy.Network
             if (type == null)
                 throw new Exception("[GetItem] (" + itemid + ") Can't find the item type.");
 
-            byte Mark = 0;
-            byte Count = 0;
-            byte Subtype = 0;
-
-            if (client.Version.Number >= ClientVersion.Version1010.Number)
-                Mark = message.ReadByte();
+            byte count = 0;
+            byte subtype = 0;
 
             if (type.IsStackable)
-                Count = message.ReadByte();
+                count = message.ReadByte();
             else if (type.IsSplash || type.IsFluidContainer)
-                Subtype = message.ReadByte();
+                subtype = message.ReadByte();
 
             if (type.IsAnimation)
                 message.ReadByte(); // Desconhecido
 
-            return new Item(type, Count, Subtype);
+            return new Item(type, count, subtype);
         }
 
         private void ParseServerSelfAppear(InMessage message)
@@ -1677,7 +1373,6 @@ namespace SharpTibiaProxy.Network
             message.ReadUShort();
             client.PlayerCanReportBugs = message.ReadByte() != 0;
         }
-
         #endregion
 
         #region SendServer
@@ -1693,73 +1388,6 @@ namespace SharpTibiaProxy.Network
 
             client.Proxy.SendToServer(message);
         }
-
-        internal void SendServerMarketLeave()
-        {
-            if (!client.LoggedIn)
-                return;
-
-            var message = new OutMessage();
-            message.WriteByte(0xF4);
-
-            client.Proxy.SendToServer(message);
-        }
-
-        internal void SendServerMarketBrowse(ushort itemid)
-        {
-            if (!client.LoggedIn)
-                return;
-
-            var message = new OutMessage();
-            message.WriteByte(0xF5);
-            message.WriteUShort(itemid);
-
-            client.Proxy.SendToServer(message);
-        }
-
-        internal void SendServerMarketCreate(OfferKind kind, ushort itemid, ushort amount, uint pieceprice, bool isanonymous)
-        {
-            if (!client.LoggedIn)
-                return;
-
-            var message = new OutMessage();
-            message.WriteByte(0xF5);
-            message.WriteByte((byte)kind);
-            message.WriteUShort(itemid);
-            message.WriteUShort(amount);
-            message.WriteUInt(pieceprice);
-            message.WriteByte(Convert.ToByte(isanonymous));
-
-            client.Proxy.SendToServer(message);
-        }
-
-        internal void SendServerMarketCancel(uint timestamp, ushort counter)
-        {
-            if (!client.LoggedIn)
-                return;
-
-            var message = new OutMessage();
-            message.WriteByte(0xF5);
-            message.WriteUInt(timestamp);
-            message.WriteUShort(counter);
-
-            client.Proxy.SendToServer(message);
-        }
-
-        internal void SendServerMarketAccept(uint timestamp, ushort counter, ushort amount)
-        {
-            if (!client.LoggedIn)
-                return;
-
-            var message = new OutMessage();
-            message.WriteByte(0xF5);
-            message.WriteUInt(timestamp);
-            message.WriteUShort(counter);
-            message.WriteUShort(amount);
-
-            client.Proxy.SendToServer(message);
-        }
-
         #endregion
     }
 }

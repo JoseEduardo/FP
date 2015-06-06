@@ -332,18 +332,7 @@ namespace OpenTibiaCommons.Domain
                     if (item.Attribute("id") != null)
                     {
                         var id = item.Attribute("id").GetUInt16();
-                        if (id != 0)
-                            LoadItem(id, item);
-                        else
-                        {
-                            string ids = item.Attribute("id").GetString();
-                            if (ids != string.Empty)
-                            {
-                                string[] splitIds = ids.Split(new char[] { '-' });
-                                for (ushort i = Convert.ToUInt16(splitIds[0]); i <= Convert.ToUInt16(splitIds[1]); i++)
-                                    LoadItem(i, item);
-                            }
-                        }
+                        LoadItem(id, item);
                     }
                     else if (item.Attribute("fromid") != null && item.Attribute("toid") != null)
                     {

@@ -38,7 +38,7 @@ namespace SharpTibiaProxy.Domain
 
         public long BaseAddress { get; private set; }
 
-        public IntPtr ProcessHandle;
+        private IntPtr processHandle;
 
         private bool disposed;
 
@@ -47,8 +47,6 @@ namespace SharpTibiaProxy.Domain
         public uint PlayerId { get; set; }
         public Location PlayerLocation { get; set; }
         public bool PlayerCanReportBugs { get; set; }
-        public bool CanChangePvpFraming { get; set; }
-        public bool ExpertModeButtonEnabled { get; set; }
 
         public Process Process { get; private set; }
         public Items Items { get; private set; }
@@ -56,12 +54,11 @@ namespace SharpTibiaProxy.Domain
         public BattleList BattleList { get; private set; }
         public ProtocolWorld ProtocolWorld { get; private set; }
         public Chat Chat { get; private set; }
-        public Market Market { get; private set; }
 
         public Dispatcher Dispatcher { get; private set; }
         public Scheduler Scheduler { get; private set; }
 
-        public ClientVersion Version { get; set; }
+        public ClientVersion Version { get; private set; }
 
         public MemoryAddresses MemoryAddresses
         {
@@ -89,8 +86,8 @@ namespace SharpTibiaProxy.Domain
 
             //this.Process.WaitForInputIdle();
 
-            ProcessHandle = WinApi.OpenProcess(WinApi.PROCESS_ALL_ACCESS, 0, (uint)process.Id);
-            BaseAddress = WinApi.GetBaseAddress(ProcessHandle).ToInt64();
+            processHandle = WinApi.OpenProcess(WinApi.PROCESS_ALL_ACCESS, 0, (uint)process.Id);
+            BaseAddress = WinApi.GetBaseAddress(processHandle).ToInt64();
 
             Initialize(Path.Combine(dataDirectory, "Tibia.dat"));
         }
@@ -115,12 +112,11 @@ namespace SharpTibiaProxy.Domain
             Scheduler.Start();
 
             Items = new Items();
-            Items.Load(datFilename, this.Version.Number);
+            Items.Load(datFilename);
 
             Map = new Map(this);
             BattleList = new BattleList(this);
             Chat = new Chat(this);
-            Market = new Market(this);
             ProtocolWorld = new ProtocolWorld(this);
         }
 
@@ -148,8 +144,8 @@ namespace SharpTibiaProxy.Domain
 
         public string Rsa
         {
-            get { return Memory.ReadString(ProcessHandle, MemoryAddresses.ClientRsa, 309); }
-            set { Memory.WriteRSA(ProcessHandle, MemoryAddresses.ClientRsa, value); }
+            get { return Memory.ReadString(processHandle, MemoryAddresses.ClientRsa, 309); }
+            set { Memory.WriteRSA(processHandle, MemoryAddresses.ClientRsa, value); }
         }
 
         public LoginServer[] LoginServers
@@ -158,87 +154,33 @@ namespace SharpTibiaProxy.Domain
             {
                 LoginServer[] servers = new LoginServer[MemoryAddresses.ClientServerMax];
                 long address = MemoryAddresses.ClientServerStart;
-                if (this.Version.Number <= ClientVersion.Version1010.Number)
+
+                for (int i = 0; i < MemoryAddresses.ClientServerMax; i++)
                 {
-                    for (int i = 0; i < MemoryAddresses.ClientServerMax; i++)
-                    {
-                        servers[i] = new LoginServer(
-                            Memory.ReadString(ProcessHandle, address),
-                            (short)Memory.ReadInt32(ProcessHandle, address + MemoryAddresses.ClientServerDistancePort)
-                        );
-                        address += MemoryAddresses.ClientServerStep;
-                    }
-                }
-                else if (this.Version.Number >= ClientVersion.Version1011.Number)
-                {
-                    IntPtr StartPointer = new IntPtr(MemoryAddresses.ClientServerStart);
-                    IntPtr EndPointer = new IntPtr(MemoryAddresses.ClientServerEnd);
-
-                    uint LoginStart = Memory.ReadUInt32(ProcessHandle, (long)StartPointer);
-                    uint LoginEnd = Memory.ReadUInt32(ProcessHandle, (long)EndPointer) - (uint)MemoryAddresses.ClientServerStep;
-
-                    uint i = 0;
-                    for (uint LoginServer = LoginStart; LoginServer <= LoginEnd; LoginServer += (uint)MemoryAddresses.ClientServerStep)
-                    {
-                        uint addressOfIP = Memory.ReadUInt32(ProcessHandle, LoginServer + MemoryAddresses.ClientServerDistanceIP);
-                        uint addressOfHostname = Memory.ReadUInt32(ProcessHandle, LoginServer + MemoryAddresses.ClientServerDistanceHostname);
-                        uint addressOfPort = LoginServer + (uint)MemoryAddresses.ClientServerDistancePort;
-
-                        if (addressOfIP != 0)
-                        {
-                            servers[i] = new LoginServer(Memory.ReadString(ProcessHandle, addressOfHostname), (int)Memory.ReadUInt16(ProcessHandle, addressOfPort));
-                        }
-                        i++;
-                    }
+                    servers[i] = new LoginServer(
+                        Memory.ReadString(processHandle, address),
+                        (short)Memory.ReadInt32(processHandle, address + MemoryAddresses.ClientServerDistancePort)
+                    );
+                    address += MemoryAddresses.ClientServerStep;
                 }
                 return servers;
             }
             set
             {
                 long address = MemoryAddresses.ClientServerStart;
-                if (this.Version.Number <= ClientVersion.Version1010.Number)
+                for (int i = 0; i < MemoryAddresses.ClientServerMax; i++)
                 {
-                    for (int i = 0; i < MemoryAddresses.ClientServerMax; i++)
-                    {
-                        Memory.WriteString(ProcessHandle, address, value[i % value.Length].Server);
-                        Memory.WriteInt32(ProcessHandle, address + MemoryAddresses.ClientServerDistancePort, value[i % value.Length].Port);
-                        address += MemoryAddresses.ClientServerStep;
-                    }
-                }
-                else if (this.Version.Number >= ClientVersion.Version1011.Number)
-                {
-                    IntPtr StartPointer = new IntPtr(MemoryAddresses.ClientServerStart);
-                    IntPtr EndPointer = new IntPtr(MemoryAddresses.ClientServerEnd);
-
-                    uint LoginStart = Memory.ReadUInt32(ProcessHandle, (long)StartPointer);
-                    uint LoginEnd = Memory.ReadUInt32(ProcessHandle, (long)EndPointer) - (uint)MemoryAddresses.ClientServerStep;
-
-                    uint i = 0;
-                    for (uint LoginServer = LoginStart; LoginServer <= LoginEnd; LoginServer += (uint)MemoryAddresses.ClientServerStep)
-                    {
-                        uint addressOfIP = Memory.ReadUInt32(ProcessHandle, LoginServer + MemoryAddresses.ClientServerDistanceIP);
-
-                        if (addressOfIP != 0)
-                        {
-                            uint addressOfPort = LoginServer + (uint)MemoryAddresses.ClientServerDistancePort;
-                            Memory.WriteInt16(ProcessHandle, addressOfPort, (short)value[i % value.Length].Port);
-
-                            int IP = BitConverter.ToInt32(System.Net.IPAddress.Parse(System.Net.Dns.GetHostAddresses(value[i % value.Length].Server)[0].ToString()).GetAddressBytes(), 0);
-                            Memory.WriteInt32(ProcessHandle, addressOfIP, IP);
-
-                            uint addressOfHost = Memory.ReadUInt32(ProcessHandle, LoginServer + MemoryAddresses.ClientServerDistanceHostname);
-                            Memory.WriteString(ProcessHandle, addressOfHost, value[i % value.Length].Server);
-                        }
-                        i++;
-                    }
+                    Memory.WriteString(processHandle, address, value[i % value.Length].Server);
+                    Memory.WriteInt32(processHandle, address + MemoryAddresses.ClientServerDistancePort, value[i % value.Length].Port);
+                    address += MemoryAddresses.ClientServerStep;
                 }
             }
         }
 
         public int SelectedChar
         {
-            get { return Memory.ReadInt32(ProcessHandle, MemoryAddresses.ClientSelectedCharacter); }
-            set { Memory.WriteInt32(ProcessHandle, MemoryAddresses.ClientSelectedCharacter, value); }
+            get { return Memory.ReadInt32(processHandle, MemoryAddresses.ClientSelectedCharacter); }
+            set { Memory.WriteInt32(processHandle, MemoryAddresses.ClientSelectedCharacter, value); }
         }
 
         public bool ProxyEnabled { get { return Proxy != null; } }
@@ -249,17 +191,17 @@ namespace SharpTibiaProxy.Domain
 
         public bool LoggedIn { get { return Status == Constants.LoginStatus.LoggedIn; } }
 
-        public Constants.LoginStatus Status { get { return (Constants.LoginStatus)Memory.ReadByte(ProcessHandle, MemoryAddresses.ClientStatus); } }
+        public Constants.LoginStatus Status { get { return (Constants.LoginStatus)Memory.ReadByte(processHandle, MemoryAddresses.ClientStatus); } }
 
         public void PlayerGoTo(Location location)
         {
             if (IsClinentless || MemoryAddresses.PlayerGoX == 0 || !LoggedIn)
                 return;
 
-            Memory.WriteUInt16(ProcessHandle, MemoryAddresses.PlayerGoX, (ushort)location.X);
-            Memory.WriteUInt16(ProcessHandle, MemoryAddresses.PlayerGoY, (ushort)location.Y);
-            Memory.WriteByte(ProcessHandle, MemoryAddresses.PlayerGoZ, (byte)location.Z);
-            Memory.WriteByte(ProcessHandle, MemoryAddresses.ClientBattleListStart + (PlayerBattleListIndex * MemoryAddresses.ClientBattleListStep)
+            Memory.WriteUInt16(processHandle, MemoryAddresses.PlayerGoX, (ushort)location.X);
+            Memory.WriteUInt16(processHandle, MemoryAddresses.PlayerGoY, (ushort)location.Y);
+            Memory.WriteByte(processHandle, MemoryAddresses.PlayerGoZ, (byte)location.Z);
+            Memory.WriteByte(processHandle, MemoryAddresses.ClientBattleListStart + (PlayerBattleListIndex * MemoryAddresses.ClientBattleListStep)
                 + MemoryAddresses.ClientBattleListCreatureWalkDistance, 1);
         }
 
@@ -272,7 +214,7 @@ namespace SharpTibiaProxy.Domain
 
                 for (int i = 0; i < MemoryAddresses.ClientBattleListMaxCreatures; i++)
                 {
-                    if (Memory.ReadUInt32(ProcessHandle, MemoryAddresses.ClientBattleListStart + (i * MemoryAddresses.ClientBattleListStep)) == PlayerId)
+                    if (Memory.ReadUInt32(processHandle, MemoryAddresses.ClientBattleListStart + (i * MemoryAddresses.ClientBattleListStep)) == PlayerId)
                     {
                         return i;
                     }
@@ -366,12 +308,12 @@ namespace SharpTibiaProxy.Domain
 
             var client = new Client(p, version, Path.GetDirectoryName(path));
 
-            Memory.WriteByte(client.ProcessHandle, client.MemoryAddresses.ClientMultiClient, client.MemoryAddresses.ClientMultiClientJMP);
+            Memory.WriteByte(client.processHandle, client.MemoryAddresses.ClientMultiClient, client.MemoryAddresses.ClientMultiClientJMP);
 
             WinApi.ResumeThread(pi.hThread);
             p.WaitForInputIdle();
 
-            Memory.WriteByte(client.ProcessHandle, client.MemoryAddresses.ClientMultiClient, client.MemoryAddresses.ClientMultiClientJNZ);
+            Memory.WriteByte(client.processHandle, client.MemoryAddresses.ClientMultiClient, client.MemoryAddresses.ClientMultiClientJNZ);
 
             WinApi.CloseHandle(pi.hProcess);
             WinApi.CloseHandle(pi.hThread);
@@ -442,10 +384,10 @@ namespace SharpTibiaProxy.Domain
             Scheduler.Shutdown();
             Dispatcher.Shutdown();
 
-            if (ProcessHandle != null && ProcessHandle != IntPtr.Zero)
+            if (processHandle != null && processHandle != IntPtr.Zero)
             {
-                WinApi.CloseHandle(ProcessHandle);
-                ProcessHandle = IntPtr.Zero;
+                WinApi.CloseHandle(processHandle);
+                processHandle = IntPtr.Zero;
             }
         }
 

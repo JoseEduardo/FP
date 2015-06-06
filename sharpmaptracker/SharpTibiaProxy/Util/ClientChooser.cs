@@ -24,16 +24,16 @@ namespace SharpTibiaProxy.Util
         /// Opens a box to pick a client.
         /// </summary>
         /// <returns></returns>
-        public static Client ShowBox()
+        public static Client ShowBox(IWin32Window owner)
         {
-            return ShowBox(new ClientChooserOptions());
+            return ShowBox(new ClientChooserOptions(), owner);
         }
         /// <summary>
         /// Open a box to pick a client with the desired options.
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static Client ShowBox(ClientChooserOptions options)
+        public static Client ShowBox(ClientChooserOptions options, IWin32Window owner)
         {
             List<Client> clients = null;
             if (options.LookUpClients)
@@ -97,7 +97,7 @@ namespace SharpTibiaProxy.Util
 
                 newClientChooser.options = options;
                 newClientChooser.TopMost = options.Topmost;
-                newClientChooser.ShowDialog();
+                newClientChooser.ShowDialog(owner);
                 return client;
             }
         }

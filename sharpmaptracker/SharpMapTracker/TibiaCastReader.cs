@@ -37,11 +37,6 @@ namespace SharpMapTracker
         };
 
         private Client client;
-        byte majorVersion;
-        byte minorVersion;
-        UInt32 test1;
-
-        byte currentMajorVersion = 4;
 
         public TibiaCastReader(Client client)
         {
@@ -74,33 +69,17 @@ namespace SharpMapTracker
                     {
 
                         var reader = new BinaryReader(fileStream);
-                        majorVersion = reader.ReadByte();
-                        minorVersion = reader.ReadByte();
+                        var majorVersion = reader.ReadByte();
+                        var minorVersion = reader.ReadByte();
 
-                        if (minorVersion == 21)
-                            client.Version = ClientVersion.Version1036;
-                        else if (minorVersion == 22)
-                            client.Version = ClientVersion.Version1038;
-                        else if (minorVersion == 23)
-                            client.Version = ClientVersion.Version1038;
-                        else if (minorVersion == 24)
-                            client.Version = ClientVersion.Version1041;
-                        else if (minorVersion == 30)
-                            client.Version = ClientVersion.Version1071;
-
-                        if(majorVersion != currentMajorVersion)
+                        if(majorVersion < 4 || (majorVersion == 4 && minorVersion < 3))
                         {
                             Trace.WriteLine("[Error] (" + Path.GetFileName(fileName) + ") Unsupported TibiaCast Version " + majorVersion + "." + minorVersion);
-                            break;
+                            continue;
                         }
 
                         if (majorVersion > 4 || (majorVersion == 4 && minorVersion >= 5))
-                        {
-                            test1 = reader.ReadUInt32();
-                        }
-
-                        if (minorVersion >= 9)
-                            reader.ReadByte(); //?
+                            reader.ReadUInt32();
 
                         reader = new BinaryReader(new DeflateStream(fileStream, CompressionMode.Decompress));
 
@@ -120,7 +99,6 @@ namespace SharpMapTracker
                             reader.BaseStream.Read(buffer, 0, packetSize);
                             var message = new InMessage(buffer, packetSize);
 
-                            //System.Threading.Thread.Sleep(10);
                             ParsePacket(message);
 
                             nextPacketTime = reader.ReadUInt32();
@@ -169,9 +147,6 @@ namespace SharpMapTracker
 
         private void ParseInitialize(InMessage message)
         {
-            if (minorVersion >= 10)
-                message.ReadByte(); //?
-
             int count = message.ReadUShort();
             for (int i = 0; i < count; i++)
             {
@@ -195,14 +170,6 @@ namespace SharpMapTracker
                 creature.Shield = message.ReadByte();
                 creature.Emblem = message.ReadByte();
                 creature.IsImpassable = message.ReadByte() == 0x01;
-
-                //10.20+ includes an extra 4 bytes per creature
-                //These bytes could alter the read order, but since I don't know what they are for yet, I'll read them out of the way.
-                message.ReadUInt();
-
-                //speech category?
-                if (client.Version.Number >= ClientVersion.Version1036.Number)
-                    message.ReadByte();
 
                 client.BattleList.AddCreature(creature);
             }

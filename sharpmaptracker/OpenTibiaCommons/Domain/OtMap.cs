@@ -227,6 +227,7 @@ namespace OpenTibiaCommons.Domain
                 //Map Data
                 writer.WriteNodeStart((byte)OtMapNodeTypes.MAP_DATA);
 
+
                 foreach (var description in Descriptions)
                 {
                     writer.Write((byte)OtMapAttribute.DESCRIPTION);
@@ -239,7 +240,7 @@ namespace OpenTibiaCommons.Domain
                 writer.Write((byte)OtMapAttribute.EXT_SPAWN_FILE);
                 writer.Write(SpawnFile);
 
-                List<string> listTile = new List<string>(); //ALTERADO POR JOSE EDUARDO 05 06 2015 16 35
+                List<string> listTile = new List<string>(); //ZEH
                 foreach (var tile in Tiles)
                 {
                     writer.WriteNodeStart((byte)OtMapNodeTypes.TILE_AREA);
@@ -266,11 +267,10 @@ namespace OpenTibiaCommons.Domain
 
                     if (tile.Ground != null)
                     {
-                        //ALTERADO POR JOSE EDUARDO 05 06 2015 16 35 INICIO
-                        listTile.Add( " TYPE: " + tile.Ground.Type.Id + "; X: " + tile.Location.X + "; Y: " + tile.Location.Y + "; Z: " + tile.Location.Z );
-                        //ALTERADO POR JOSE EDUARDO 05 06 2015 16 35 FIM
+                        listTile.Add(tile.Ground.Type.Id+";"+tile.Location.X+";"+tile.Location.Y+";"+tile.Location.Z); //ZEH
 
                         writer.WriteNodeStart((byte)OtMapNodeTypes.ITEM);
+                        writer.Write(tile.Ground.Type.Id);
                         tile.Ground.Serialize(writer, writer.GetPropertyWriter());
                         writer.WriteNodeEnd(); //Item
                     }
@@ -288,8 +288,10 @@ namespace OpenTibiaCommons.Domain
                     writer.WriteNodeEnd(); //Tile
                     writer.WriteNodeEnd(); //Tile Area
                 }
-                string[] linesTile = listTile.ToArray();//ALTERADO POR JOSE EDUARDO 05 06 2015 16 35
-                System.IO.File.WriteAllLines(@fileName + " Unity.txt", linesTile); //ALTERADO POR JOSE EDUARDO 05 06 2015 16 35
+
+                string[] sTile = listTile.ToArray(); //zeh
+                System.IO.File.WriteAllLines(@fileName+"unity.txt", sTile); //zeh
+
                 writer.WriteNodeStart((byte)OtMapNodeTypes.TOWNS);
 
                 foreach (var town in towns.Values)

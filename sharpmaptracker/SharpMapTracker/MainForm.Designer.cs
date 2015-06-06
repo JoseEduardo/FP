@@ -52,15 +52,14 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.alwaysOnTopCheckBox = new System.Windows.Forms.ToolStripMenuItem();
             this.highlitghtMissingTilesCheckBox = new System.Windows.Forms.ToolStripMenuItem();
-            this.shareTrackedMapCheckBox = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.shareTrackedMapCheckBox = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.tileCountLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.npcCountLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.monsterCountLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.miniMap = new SharpMapTracker.MiniMap();
-            this.changeIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -99,8 +98,7 @@
             this.saveMapToolStripMenuItem,
             this.saveNPCsToolStripMenuItem,
             this.toolStripSeparator2,
-            this.exitToolStripMenuItem,
-            this.changeIPToolStripMenuItem});
+            this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
@@ -260,16 +258,6 @@
             this.highlitghtMissingTilesCheckBox.Text = "Highlitght Missing Tiles";
             this.highlitghtMissingTilesCheckBox.Click += new System.EventHandler(this.highlitghtMissingTilesToolStripMenuItem_Click);
             // 
-            // shareTrackedMapCheckBox
-            // 
-            this.shareTrackedMapCheckBox.Checked = true;
-            this.shareTrackedMapCheckBox.CheckOnClick = true;
-            this.shareTrackedMapCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.shareTrackedMapCheckBox.Name = "shareTrackedMapCheckBox";
-            this.shareTrackedMapCheckBox.Size = new System.Drawing.Size(204, 22);
-            this.shareTrackedMapCheckBox.Text = "Share Tracked Map";
-            this.shareTrackedMapCheckBox.Click += new System.EventHandler(this.shareTrackedMapCheckBox_Click);
-            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
@@ -281,6 +269,16 @@
             this.clearToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.clearToolStripMenuItem.Text = "&Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
+            // 
+            // shareTrackedMapCheckBox
+            // 
+            this.shareTrackedMapCheckBox.Checked = true;
+            this.shareTrackedMapCheckBox.CheckOnClick = true;
+            this.shareTrackedMapCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.shareTrackedMapCheckBox.Name = "shareTrackedMapCheckBox";
+            this.shareTrackedMapCheckBox.Size = new System.Drawing.Size(204, 22);
+            this.shareTrackedMapCheckBox.Text = "Share Tracked Map";
+            this.shareTrackedMapCheckBox.Click += new System.EventHandler(this.shareTrackedMapCheckBox_Click);
             // 
             // statusStrip
             // 
@@ -338,13 +336,6 @@
             this.miniMap.Name = "miniMap";
             this.miniMap.Size = new System.Drawing.Size(318, 318);
             this.miniMap.TabIndex = 15;
-            // 
-            // changeIPToolStripMenuItem
-            // 
-            this.changeIPToolStripMenuItem.Name = "changeIPToolStripMenuItem";
-            this.changeIPToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.changeIPToolStripMenuItem.Text = "Change IP";
-            this.changeIPToolStripMenuItem.Click += new System.EventHandler(this.changeIPToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -405,6 +396,5 @@
         private System.Windows.Forms.ToolStripMenuItem loadMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem highlitghtMissingTilesCheckBox;
         private System.Windows.Forms.ToolStripMenuItem shareTrackedMapCheckBox;
-        private System.Windows.Forms.ToolStripMenuItem changeIPToolStripMenuItem;
     }
 }
