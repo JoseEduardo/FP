@@ -1,0 +1,5 @@
+X:\Windows Stuff\Documents\Visual Studio 2010\Projects\SpriteDump\SpriteDump\bin\Debug\SpriteDump.exe
+X:\Windows Stuff\Documents\Visual Studio 2010\Projects\SpriteDump\SpriteDump\bin\Debug\SpriteDump.pdb
+X:\Windows Stuff\Documents\Visual Studio 2010\Projects\SpriteDump\SpriteDump\obj\x86\Debug\ResolveAssemblyReference.cache
+X:\Windows Stuff\Documents\Visual Studio 2010\Projects\SpriteDump\SpriteDump\obj\x86\Debug\SpriteDump.exe
+X:\Windows Stuff\Documents\Visual Studio 2010\Projects\SpriteDump\SpriteDump\obj\x86\Debug\SpriteDump.pdb

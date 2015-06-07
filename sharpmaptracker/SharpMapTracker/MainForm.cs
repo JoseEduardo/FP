@@ -471,8 +471,8 @@ namespace SharpMapTracker
             {
                 lock (map)
                 {
-                    try
-                    {
+                   // try
+                   // {
                         map.Load(openFileDialog.FileName, RetrackTiles);
                         var tile = map.Tiles.FirstOrDefault();
 
@@ -482,11 +482,11 @@ namespace SharpMapTracker
                         UpdateCounters(map.TileCount, map.NpcCount, map.MonsterCount);
 
                         Trace.WriteLine("Map successfully loaded.");
-                    }
-                    catch (Exception ex)
-                    {
-                        Trace.WriteLine("[Error] Unable to load the map. Details: " + ex.Message);
-                    }
+                   // }
+                   // catch (Exception ex)
+                   // {
+                   //     Trace.WriteLine("[Error] Unable to load the map. Details: " + ex.Message);
+                   // }
                 }
             }
         }

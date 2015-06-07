@@ -1,0 +1,2 @@
+Open Tibia items successfully loaded.
+[Error] Unable to load the map. Details: Unkonw item attribute: 46

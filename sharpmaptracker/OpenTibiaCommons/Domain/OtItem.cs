@@ -194,6 +194,7 @@ namespace OpenTibiaCommons.Domain
 
         public virtual void DeserializeAttribute(OtItemAttribute attribute, OtPropertyReader reader)
         {
+            //zeh
             switch (attribute)
             {
                 case OtItemAttribute.COUNT:
@@ -267,21 +268,21 @@ namespace OpenTibiaCommons.Domain
                     break;
 
                 //specific item properties
-                //case OtItemAttribute.DEPOT_ID:
-                //    SetAttribute(OtItemAttribute.DEPOT_ID, reader.ReadUInt16());
-                //    break;
-                //case OtItemAttribute.HOUSEDOORID:
-                //    SetAttribute(OtItemAttribute.HOUSEDOORID, reader.ReadByte());
-                //    break;
-                //case OtItemAttribute.TELE_DEST:
-                //    SetAttribute(OtItemAttribute.TELE_DEST, reader.ReadLocation());
-                //    break;
-                //case OtItemAttribute.SLEEPERGUID:
-                //    SetAttribute(OtItemAttribute.SLEEPERGUID, reader.ReadUInt32());
-                //    break;
-                //case OtItemAttribute.SLEEPSTART:
-                //    SetAttribute(OtItemAttribute.SLEEPSTART, reader.ReadUInt32());
-                //    break;
+                case OtItemAttribute.DEPOT_ID:
+                    SetAttribute(OtItemAttribute.DEPOT_ID, reader.ReadUInt16());
+                    break;
+                case OtItemAttribute.HOUSEDOORID:
+                    SetAttribute(OtItemAttribute.HOUSEDOORID, reader.ReadByte());
+                    break;
+                case OtItemAttribute.TELE_DEST:
+                    SetAttribute(OtItemAttribute.TELE_DEST, reader.ReadLocation());
+                    break;
+                case OtItemAttribute.SLEEPERGUID:
+                    SetAttribute(OtItemAttribute.SLEEPERGUID, reader.ReadUInt32());
+                    break;
+                case OtItemAttribute.SLEEPSTART:
+                    SetAttribute(OtItemAttribute.SLEEPSTART, reader.ReadUInt32());
+                    break;
                 default:
                     throw new Exception("Unkonw item attribute: " + (byte)attribute);
             }

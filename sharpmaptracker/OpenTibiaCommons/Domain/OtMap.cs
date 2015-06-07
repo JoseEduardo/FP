@@ -267,7 +267,8 @@ namespace OpenTibiaCommons.Domain
 
                     if (tile.Ground != null)
                     {
-                        listTile.Add(tile.Ground.Type.Id+";"+tile.Location.X+";"+tile.Location.Y+";"+tile.Location.Z); //ZEH
+
+                        listTile.Add(tile.Ground.Type.SpriteId+ ";" + tile.Location.X + ";" + tile.Location.Y + ";" + tile.Location.Z); //ZEH
 
                         writer.WriteNodeStart((byte)OtMapNodeTypes.ITEM);
                         writer.Write(tile.Ground.Type.Id);

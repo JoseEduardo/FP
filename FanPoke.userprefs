@@ -1,10 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\ai\ClearSight.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\tileMap\createMAP.cs">
     <Files>
-      <File FileName="Assets\scripts\ai\AutoTransparent.cs" Line="20" Column="1" />
-      <File FileName="Assets\scripts\ai\ClearSight.cs" Line="24" Column="47" />
-      <File FileName="Assets\scripts\ai\playerStats.cs" Line="36" Column="1" />
+      <File FileName="Assets\scripts\tileMap\createMAP.cs" Line="23" Column="56" />
+      <File FileName="Assets\scripts\MS\M1.cs" Line="311" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

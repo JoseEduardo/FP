@@ -1,0 +1,10 @@
+X:\Windows Stuff\Documents\Visual Studio 2010\Projects\SpriteDump\SpriteDump\bin\Release\SpriteDump.exe
+X:\Windows Stuff\Documents\Visual Studio 2010\Projects\SpriteDump\SpriteDump\bin\Release\SpriteDump.pdb
+X:\Windows Stuff\Documents\Visual Studio 2010\Projects\SpriteDump\SpriteDump\obj\x86\Release\ResolveAssemblyReference.cache
+X:\Windows Stuff\Documents\Visual Studio 2010\Projects\SpriteDump\SpriteDump\obj\x86\Release\SpriteDump.exe
+X:\Windows Stuff\Documents\Visual Studio 2010\Projects\SpriteDump\SpriteDump\obj\x86\Release\SpriteDump.pdb
+C:\Google Drive\FanPoke\SpriteDump\SpriteDump\obj\x86\Release\SpriteDump.exe
+C:\Google Drive\FanPoke\SpriteDump\SpriteDump\obj\x86\Release\SpriteDump.pdb
+C:\Google Drive\FanPoke\SpriteDump\SpriteDump\bin\Release\SpriteDump.exe
+C:\Google Drive\FanPoke\SpriteDump\SpriteDump\bin\Release\SpriteDump.pdb
+C:\Google Drive\FanPoke\SpriteDump\SpriteDump\obj\x86\Release\SpriteDump.csprojResolveAssemblyReference.cache
