@@ -125,3 +125,381 @@ Open Tibia items successfully loaded.
 Open Tibia items successfully loaded.
 Open Tibia items successfully loaded.
 Open Tibia items successfully loaded.
+Open Tibia items successfully loaded.
+Open Tibia items successfully loaded.
+Open Tibia items successfully loaded.
+Can't load map spawns.
+Map successfully loaded.
+[Error] Unable to save map file. Details: Unkonw item attribute: TELE_DEST
+[Error] Unable to save map file. Details: Unkonw item attribute: TELE_DEST
+Open Tibia items successfully loaded.
+Map successfully saved.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+Can't load map spawns.
+Map successfully loaded.
+Map successfully saved.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+Open Tibia items successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+Can't load map spawns.
+Map successfully loaded.
+[Warning] Item 30001 in item.xml not found in items.otb
+[Warning] Item 30002 in item.xml not found in items.otb
+[Warning] Item 30003 in item.xml not found in items.otb
+[Warning] Item 30004 in item.xml not found in items.otb
+[Warning] Item 30005 in item.xml not found in items.otb
+[Warning] Item 30006 in item.xml not found in items.otb
+[Warning] Item 30007 in item.xml not found in items.otb
+[Warning] Item 30010 in item.xml not found in items.otb
+[Warning] Item 30011 in item.xml not found in items.otb
+[Warning] Item 30013 in item.xml not found in items.otb
+[Warning] Item 30014 in item.xml not found in items.otb
+[Warning] Item 30015 in item.xml not found in items.otb
+[Warning] Item 30019 in item.xml not found in items.otb
+[Warning] Item 30021 in item.xml not found in items.otb
+[Warning] Item 30026 in item.xml not found in items.otb
+[Warning] Item 30027 in item.xml not found in items.otb
+[Warning] Item 30028 in item.xml not found in items.otb
+[Warning] Item 30035 in item.xml not found in items.otb
+[Warning] Item 30043 in item.xml not found in items.otb
+Open Tibia items successfully loaded.
+Can't load map spawns.
+Map successfully loaded.
+Map successfully saved.

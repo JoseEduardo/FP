@@ -5,3 +5,4 @@ C:\Google Drive\FanPoke\sharpmaptracker\SharpTibiaProxy\obj\Debug\SharpTibiaProx
 C:\Google Drive\FanPoke\sharpmaptracker\SharpTibiaProxy\obj\Debug\SharpTibiaProxy.csproj.GenerateResource.Cache
 C:\Google Drive\FanPoke\sharpmaptracker\SharpTibiaProxy\obj\Debug\SharpTibiaProxy.dll
 C:\Google Drive\FanPoke\sharpmaptracker\SharpTibiaProxy\obj\Debug\SharpTibiaProxy.pdb
+C:\Google Drive\FanPoke\sharpmaptracker\SharpTibiaProxy\obj\Debug\SharpTibiaProxy.csprojResolveAssemblyReference.cache

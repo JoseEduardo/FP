@@ -169,7 +169,9 @@ namespace OpenTibiaCommons.Domain
                     writer.Write((byte)GetAttribute(attribute));
                     break;
                 default:
-                    throw new Exception("Unkonw item attribute: " + attribute);
+                    writer.Write(0);
+                    break;
+                    //throw new Exception("Unkonw item attribute: " + attribute);
             }
 
 
@@ -268,6 +270,7 @@ namespace OpenTibiaCommons.Domain
                     break;
 
                 //specific item properties
+                    /*
                 case OtItemAttribute.DEPOT_ID:
                     SetAttribute(OtItemAttribute.DEPOT_ID, reader.ReadUInt16());
                     break;
@@ -283,8 +286,11 @@ namespace OpenTibiaCommons.Domain
                 case OtItemAttribute.SLEEPSTART:
                     SetAttribute(OtItemAttribute.SLEEPSTART, reader.ReadUInt32());
                     break;
+                    */
                 default:
-                    throw new Exception("Unkonw item attribute: " + (byte)attribute);
+                    SetAttribute(attribute, 0);
+                    break;
+                    //throw new Exception("Unkonw item attribute: " + (byte)attribute);
             }
         }
 
