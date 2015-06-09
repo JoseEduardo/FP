@@ -38,17 +38,17 @@ class GridMove : MonoBehaviour {
 			
 			if (input != Vector2.zero) {
 				if(input.x > 0){
-					input.x = 1;
-					input.y = -1;
+					input.x = 0.32F;
+					input.y = -0.32F;
 				}else if(input.x < 0){
-					input.x = -1;
-					input.y = 1;
+					input.x = -0.32F;
+					input.y = 0.32F;
 				}else if(input.y > 0){
-					input.y = 1;
-					input.x = 1;
+					input.y = 0.32F;
+					input.x = 0.32F;
 				}else if(input.y < 0){
-					input.y = -1;
-					input.x = -1;
+					input.y = -0.32F;
+					input.x = -0.32F;
 				}
 				StartCoroutine(move(transform));
 			}else{
@@ -63,11 +63,16 @@ class GridMove : MonoBehaviour {
 		t = 0;
 		
 		if(gridOrientation == Orientation.Horizontal) {
-			endPosition = new Vector3(startPosition.x + System.Math.Sign(input.x) * gridSize,
-			                          startPosition.y, startPosition.z + System.Math.Sign(input.y) * gridSize);
+//			endPosition = new Vector3(startPosition.x + System.Math.Sign(input.x) * gridSize,
+//			                          startPosition.y, startPosition.z + System.Math.Sign(input.y) * gridSize);
+
+			endPosition = new Vector3(startPosition.x + System.Math.Sign(input.x),
+			                          startPosition.y, startPosition.z + System.Math.Sign(input.y));
 		} else {
-			endPosition = new Vector3(startPosition.x + System.Math.Sign(input.x) * gridSize,
-			                          startPosition.y + System.Math.Sign(input.y) * gridSize, startPosition.z);
+//			endPosition = new Vector3(startPosition.x + System.Math.Sign(input.x) * gridSize,
+//			                          startPosition.y + System.Math.Sign(input.y) * gridSize, startPosition.z);
+			endPosition = new Vector3(startPosition.x + System.Math.Sign(input.x),
+			                          startPosition.y + System.Math.Sign(input.y), startPosition.z);
 		}
 		
 		if(allowDiagonals && correctDiagonalSpeed && input.x != 0 && input.y != 0) {
