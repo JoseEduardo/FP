@@ -697,6 +697,7 @@
      <Compile Include="Assets\scripts\MS\M1.cs" />
      <Compile Include="Assets\scripts\TextOutline.cs" />
      <Compile Include="Assets\scripts\ai\AutoTransparent.cs" />
+     <Compile Include="Assets\scripts\ai\CameraController.cs" />
      <Compile Include="Assets\scripts\ai\CameraFacingBillboard.cs" />
      <Compile Include="Assets\scripts\ai\ClearSight.cs" />
      <Compile Include="Assets\scripts\ai\GridMove.cs" />
