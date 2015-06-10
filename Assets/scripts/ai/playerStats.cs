@@ -39,12 +39,15 @@ public class playerStats : MonoBehaviour {
 
 		MapCtrlObj = GameObject.Find ("Map_Controller");
 		MapCtrl = MapCtrlObj.GetComponent<mapController>();
-
-		MapCtrl.drawAllMap(this);
+		//MapCtrl.drawAllMap(this);
 	}
 
 	// Update is called once per frame
 	void Update () {
+		if(Input.GetKeyDown(KeyCode.Space)){
+			MapCtrl.drawAllMap(this);
+		}
+
 		timeLeft -= Time.deltaTime;
 		if ( timeLeft < 0 )
 		{

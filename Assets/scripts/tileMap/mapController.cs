@@ -30,7 +30,6 @@ public class mapController : MonoBehaviour {
 			TMap.posX = Convert.ToInt32(arr[1]);
 			TMap.posY = Convert.ToInt32(arr[2]);
 			TMap.posZ = Convert.ToInt32(arr[3]);
-
 			ListTileMap.Add(TMap);
 			IDTiles += 1;
 		} while (text != null);
@@ -120,19 +119,24 @@ public class mapController : MonoBehaviour {
 		int MinY = (int)Math.Round(posPlayer.y-MaxTiles);
 
 		Player.ListTileMap = ListTileMap.FindAll(tile => tile.posX >= MinX && tile.posX <= MaxX && tile.posY >= MinY && tile.posY <= MaxY && tile.posZ <= posPlayer.z);
+		int CtrlX = Player.ListTileMap [0].posX;
+		int CtrlY = Player.ListTileMap [0].posY;
 		for (int i = 0; i < Player.ListTileMap.Count; i++) {
 			GameObject SpriteGameObject = new GameObject ();
-			SpriteGameObject.transform.position = new Vector3 (Player.ListTileMap [i].posX * 0.32F, (Player.ListTileMap [i].posZ - 7) * 3, Player.ListTileMap [i].posY * 0.32F);
-			SpriteGameObject.transform.Rotate (-90F, 0F, 0F);
+			SpriteGameObject.transform.parent = TerrainContainer.transform;
+
+			//SpriteGameObject.transform.localPosition = new Vector3 (Player.ListTileMap [i].posX * 0.32F, (Player.ListTileMap [i].posZ - 7) * 3, Player.ListTileMap [i].posY * 0.32F);
+			SpriteGameObject.transform.Rotate (-90F, 138F, 0F);
+			SpriteGameObject.transform.localPosition = new Vector3 ( (Player.ListTileMap [i].posX-CtrlX) * 0.32F, (Player.ListTileMap [i].posZ - 7) * 3, (Player.ListTileMap [i].posY-CtrlY) * 0.32F);
 			SpriteGameObject.transform.name = Player.ListTileMap [i].SpriteID;
 		
 			SpriteGameObject.AddComponent <SpriteRenderer> ();			
 			SpriteGameObject.GetComponent<SpriteRenderer> ().sprite = Resources.Load ("sprites/" + Player.ListTileMap [i].SpriteID, typeof(Sprite)) as Sprite;
 			SpriteGameObject.transform.tag = "Tile";
 		
-			SpriteGameObject.transform.localScale = new Vector3 (2F, 2F, 1F);
-			SpriteGameObject.transform.parent = TerrainContainer.transform;
+			//SpriteGameObject.transform.localScale = new Vector3 (2F, 2F, 1F);
 			Player.ListTileMap [i].Tile = SpriteGameObject;
 		}
+
 	}
 }
