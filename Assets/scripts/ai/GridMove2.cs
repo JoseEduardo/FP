@@ -26,22 +26,22 @@ public class GridMove2 : MonoBehaviour {
 	void Update() {
 		if (!isMoving) {
 			if (Input.GetKey ("right")) {
-				endPosition = new Vector3 (transform.position.x + 0.32F, transform.position.y, transform.position.z - 0.32F); 
+				endPosition = new Vector3 (transform.position.x + 0.50F, transform.position.y, transform.position.z - 0.50F); 
 				PStats.positionTile.x = PStats.positionTile.x + 1;
 				MapCtrl.redrawMap(PStats, 2);
 				StartCoroutine (movePlayer (transform));
 			} else if (Input.GetKey ("left")) {
-				endPosition = new Vector3 (transform.position.x - 0.32F, transform.position.y, transform.position.z + 0.32F); 
+				endPosition = new Vector3 (transform.position.x - 0.50F, transform.position.y, transform.position.z + 0.50F); 
 				PStats.positionTile.x = PStats.positionTile.x + 1;
 				MapCtrl.redrawMap(PStats, 0);
 				StartCoroutine (movePlayer (transform));
 			} else if (Input.GetKey ("up")) {
-				endPosition = new Vector3 (transform.position.x + 0.32F, transform.position.y, transform.position.z + 0.32F); 
+				endPosition = new Vector3 (transform.position.x + 0.64F, transform.position.y, transform.position.z + 0.64F); 
 				PStats.positionTile.y = PStats.positionTile.y - 1;
 				MapCtrl.redrawMap(PStats, 1);
 				StartCoroutine (movePlayer (transform));
 			} else if (Input.GetKey ("down")) {
-				endPosition = new Vector3 (transform.position.x - 0.32F, transform.position.y, transform.position.z - 0.32F); 
+				endPosition = new Vector3 (transform.position.x - 0.64F, transform.position.y, transform.position.z - 0.64F); 
 				PStats.positionTile.y = PStats.positionTile.y - 1;
 				MapCtrl.redrawMap(PStats, 3);
 				StartCoroutine (movePlayer (transform));

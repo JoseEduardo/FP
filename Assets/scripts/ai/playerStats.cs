@@ -32,18 +32,19 @@ public class playerStats : MonoBehaviour {
 
 	void Start(){
 		posRespawnTile = new Vector3(positionTile.x*0.32F, (positionTile.z -7) * 3F, positionTile.y*0.32F);
-		transform.position = posRespawnTile;
+		transform.parent.position = posRespawnTile;
 
 		pChase = GetComponent<pokeChase> ();
 		agent = GetComponent<NavMeshAgent>();
 
 		MapCtrlObj = GameObject.Find ("Map_Controller");
 		MapCtrl = MapCtrlObj.GetComponent<mapController>();
-		//MapCtrl.drawAllMap(this);
+		MapCtrl.drawAllMap(this);
 	}
 
 	// Update is called once per frame
 	void Update () {
+
 		if(Input.GetKeyDown(KeyCode.Space)){
 			MapCtrl.drawAllMap(this);
 		}
@@ -51,7 +52,7 @@ public class playerStats : MonoBehaviour {
 		timeLeft -= Time.deltaTime;
 		if ( timeLeft < 0 )
 		{
-			agent.enabled = true;
+			//agent.enabled = true; DESABILITADO POIS NAO HAVERA MAIS NAVMASH
 		}
 
 		if (ObgPName != null) {
