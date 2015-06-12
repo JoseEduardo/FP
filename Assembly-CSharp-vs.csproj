@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_5_0_2;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;CROSS_PLATFORM_INPUT</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_5_0_2;UNITY_5_0;UNITY_5;UNITY_64;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;CROSS_PLATFORM_INPUT</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -121,13 +121,6 @@
      <Compile Include="Assets\DynamicBone\Demo\GameController.cs" />
      <Compile Include="Assets\DynamicBone\Scripts\DynamicBone.cs" />
      <Compile Include="Assets\DynamicBone\Scripts\DynamicBoneCollider.cs" />
-     <Compile Include="Assets\Moba_Camera\Scripts\Moba_Camera.cs" />
-     <Compile Include="Assets\Moba_Camera\Scripts\Moba_Camera_Boundaries.cs" />
-     <Compile Include="Assets\Moba_Camera\Scripts\Moba_Camera_Boundary.cs" />
-     <Compile Include="Assets\Moba_Camera\TestFiles\Scripts\DemoMovementLine.cs" />
-     <Compile Include="Assets\Moba_Camera\TestFiles\Scripts\DemoSwitchTarget.cs" />
-     <Compile Include="Assets\Moba_Camera\TestFiles\Scripts\DemoTarget.cs" />
-     <Compile Include="Assets\Moba_Camera\TestFiles\Scripts\DemoUI_Controls.cs" />
      <Compile Include="Assets\Slua\LuaObject\Custom\BindCustom.cs" />
      <Compile Include="Assets\Slua\LuaObject\Custom\LuaDelegate_Deleg_GetBundleInfoDelegate.cs" />
      <Compile Include="Assets\Slua\LuaObject\Custom\LuaDelegate_Deleg_SimpleDelegate.cs" />
@@ -700,7 +693,6 @@
      <Compile Include="Assets\scripts\ai\AutoTransparent.cs" />
      <Compile Include="Assets\scripts\ai\CameraController.cs" />
      <Compile Include="Assets\scripts\ai\CameraFacingBillboard.cs" />
-     <Compile Include="Assets\scripts\ai\ClearSight.cs" />
      <Compile Include="Assets\scripts\ai\GridMove.cs" />
      <Compile Include="Assets\scripts\ai\GridMove2.cs" />
      <Compile Include="Assets\scripts\ai\GuiHealth.cs" />
@@ -710,7 +702,6 @@
      <Compile Include="Assets\scripts\ai\pokeChase.cs" />
      <Compile Include="Assets\scripts\ai\summonPoke.cs" />
      <Compile Include="Assets\scripts\buttonsTop.cs" />
-     <Compile Include="Assets\scripts\chatScript.cs" />
      <Compile Include="Assets\scripts\class\pokeMove.cs" />
      <Compile Include="Assets\scripts\class\tileMap.cs" />
      <Compile Include="Assets\scripts\damageController.cs" />
@@ -725,7 +716,6 @@
      <Compile Include="Assets\scripts\tileMap\mapController.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
-     <None Include="Assets\Moba_Camera\Readme\readme.txt" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Slua\Resources\module\some.txt" />
      <None Include="Assets\Slua\Resources\main.txt" />

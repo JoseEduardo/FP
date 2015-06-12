@@ -23,7 +23,7 @@ public class playerStats : MonoBehaviour {
 	private GameObject TargetCr = null;
 
 	private float timeLeft = 0.5F;
-	private NavMeshAgent agent;
+//	private NavMeshAgent agent;
 
 	private GameObject MapCtrlObj;
 	private mapController MapCtrl;
@@ -35,7 +35,7 @@ public class playerStats : MonoBehaviour {
 		transform.parent.position = posRespawnTile;
 
 		pChase = GetComponent<pokeChase> ();
-		agent = GetComponent<NavMeshAgent>();
+//		agent = GetComponent<NavMeshAgent>();
 
 		MapCtrlObj = GameObject.Find ("Map_Controller");
 		MapCtrl = MapCtrlObj.GetComponent<mapController>();

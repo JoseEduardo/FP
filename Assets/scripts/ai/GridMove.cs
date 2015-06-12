@@ -68,7 +68,6 @@ class GridMove : MonoBehaviour {
 					PStats.positionTile.x = PStats.positionTile.x - 1;
 					//MapCtrl.redrawMap(PStats, 1);
 				}
-				MapCtrl.drawAllMap(PStats);
 				StartCoroutine(move(transform));
 			}else{
 				anim.Play("Idle");
@@ -94,13 +93,15 @@ class GridMove : MonoBehaviour {
 		} else {
 			factor = 1f;
 		}
-		
+
+		transform.parent.transform.position = endPosition; 
+		MapCtrl.drawAllMap(PStats);
 		while (t < 1f) {
 			if(isMoving){
 				if(!Teleport){
 					t += Time.deltaTime * (moveSpeed/gridSize) * factor;
 
-					transform.LookAt (endPosition);
+					transform.LookAt ( endPosition );
 					anim.Play("Walk");
 					transform.position = Vector3.Lerp(startPosition, endPosition, t);
 					yield return null;
@@ -112,7 +113,6 @@ class GridMove : MonoBehaviour {
 				t = 1f;
 			}
 		}
-
 		isMoving = false;
 		yield return 0;
 	}

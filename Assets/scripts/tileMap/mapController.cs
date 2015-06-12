@@ -109,19 +109,16 @@ public class mapController : MonoBehaviour {
 	}
 
 	public void drawAllMap(playerStats Player){
-		/*
-		var children = new List<GameObject>();
-		foreach (Transform child in TerrainContainer.transform) children.Add(child.gameObject);
-		children.ForEach(child => Destroy(child));
-		*/
+
 		if (TerrainContainer != null) {
 			Destroy (TerrainContainer);
 		}
 
 		TerrainContainer = new GameObject ();
+		//TerrainContainer.transform.parent = Player.transform;
 		TerrainContainer.transform.parent = Player.transform.parent.transform;
-		//TerrainContainer.transform.localPosition = new Vector3 (-0.1F, 0.1F, -22.7F);
-		TerrainContainer.transform.localPosition = new Vector3 (-0.18F, 0.08F, -12.87F);
+		//TerrainContainer.transform.localPosition = new Vector3 (-0.18F, 0.08F, -12.87F);
+		TerrainContainer.transform.localPosition = new Vector3 (-1F, 0.08F, -17.4F);
 		TerrainContainer.transform.Rotate (0F, -44.49991F, -0.2049561F);
 
 		Vector3 posPlayer = Player.positionTile; 
@@ -131,7 +128,9 @@ public class mapController : MonoBehaviour {
 		int MaxY = (int)Math.Round(posPlayer.y+MaxTiles);
 		int MinY = (int)Math.Round(posPlayer.y-MaxTiles);
 
+		//DEPRECATED VERIFICAR COMO FAZER PARA N DAR O LAGG, TALVEZ QUEBRAR EM VARIOS E PROCURAR DEPOIS
 		Player.ListTileMap = ListTileMap.FindAll(tile => tile.posX >= MinX && tile.posX <= MaxX && tile.posY >= MinY && tile.posY <= MaxY && tile.posZ <= posPlayer.z);
+
 		int CtrlX = Player.ListTileMap [0].posX;
 		int CtrlY = Player.ListTileMap [0].posY;
 
@@ -150,6 +149,5 @@ public class mapController : MonoBehaviour {
 		
 			SpriteGameObject.transform.localScale = new Vector3 (2F, 2F, 1F);
 		}
-
 	}
 }
