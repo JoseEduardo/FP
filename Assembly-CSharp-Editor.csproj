@@ -74,6 +74,13 @@
      <Compile Include="Assets\Editor\ImageEffects\SunShaftsEditor.cs" />
      <Compile Include="Assets\Editor\ImageEffects\TonemappingEditor.cs" />
      <Compile Include="Assets\Editor\ImageEffects\VignetteAndChromaticAberrationEditor.cs" />
+     <Compile Include="Assets\Inventory\Scripts\Editor\AttributeDrawer.cs" />
+     <Compile Include="Assets\Inventory\Scripts\Editor\Drawers.cs" />
+     <Compile Include="Assets\Inventory\Scripts\Editor\GenericWindow.cs" />
+     <Compile Include="Assets\Inventory\Scripts\Editor\ItemDatabaseWindow.cs" />
+     <Compile Include="Assets\Inventory\Scripts\Editor\ItemDrawer.cs" />
+     <Compile Include="Assets\Inventory\Scripts\Editor\ManagerDrawer.cs" />
+     <Compile Include="Assets\Inventory\Scripts\Editor\OnUseDrawer.cs" />
      <Compile Include="Assets\Slua\Editor\CustomExport.cs" />
      <Compile Include="Assets\Slua\Editor\LuaCodeGen.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
