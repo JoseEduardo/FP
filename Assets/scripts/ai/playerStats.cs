@@ -10,6 +10,7 @@ public class playerStats : MonoBehaviour {
 	public Vector3 positionTile;
 	private Vector3 posRespawnTile;
 	public List<tileMap> ListTileMap = null;
+	public List<tileMap> ListItemMap = null;
 
 	public int Health = 100;
 	public int MaxHealth = 100;
@@ -39,6 +40,8 @@ public class playerStats : MonoBehaviour {
 
 		MapCtrlObj = GameObject.Find ("Map_Controller");
 		MapCtrl = MapCtrlObj.GetComponent<mapController>();
+		MapCtrl.LoadMapItem ();
+		MapCtrl.LoadMapTile ();
 		MapCtrl.drawAllMap(this);
 	}
 

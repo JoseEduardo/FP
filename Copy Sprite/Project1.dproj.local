@@ -7,9 +7,9 @@
     <Transaction>2015/04/20 16:47:26.000.605,=C:\Users\user\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2015/04/27 09:11:08.000.212,=C:\Users\user\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2015/04/27 10:23:49.000.554,=C:\Users\user\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2015/06/08 11:40:48.951,=C:\Users\user\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2015/06/08 11:45:30.415,D:\Estudos\Copy Sprite\Unit1.pas=C:\Users\user\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2015/06/08 11:45:30.415,D:\Estudos\Copy Sprite\Unit1.dfm=C:\Users\user\Documents\RAD Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2015/06/08 11:45:33.120,D:\Estudos\Copy Sprite\Project1.dproj=C:\Users\user\Documents\RAD Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2015/06/08 11:40:48.000.951,=C:\Users\user\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/06/08 11:45:30.000.415,C:\Users\user\Documents\RAD Studio\Projects\Unit1.dfm=D:\Estudos\Copy Sprite\Unit1.dfm</Transaction>
+    <Transaction>2015/06/08 11:45:30.000.415,C:\Users\user\Documents\RAD Studio\Projects\Unit1.pas=D:\Estudos\Copy Sprite\Unit1.pas</Transaction>
+    <Transaction>2015/06/08 11:45:33.000.120,C:\Users\user\Documents\RAD Studio\Projects\Project1.dproj=D:\Estudos\Copy Sprite\Project1.dproj</Transaction>
   </Transactions>
 </BorlandProject>
