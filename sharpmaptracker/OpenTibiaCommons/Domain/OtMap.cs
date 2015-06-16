@@ -241,6 +241,7 @@ namespace OpenTibiaCommons.Domain
                 writer.Write(SpawnFile);
 
                 List<string> listTile = new List<string>(); //ZEH
+                List<string> listItem = new List<string>(); //ZEH
                 foreach (var tile in Tiles)
                 {
                     writer.WriteNodeStart((byte)OtMapNodeTypes.TILE_AREA);
@@ -278,6 +279,7 @@ namespace OpenTibiaCommons.Domain
 
                     foreach (var item in tile.Items)
                     {
+                        listTile.Add(item.Type.Id + ";" + tile.Location.X + ";" + tile.Location.Y + ";" + tile.Location.Z); //ZEH
                         writer.WriteNodeStart((byte)OtMapNodeTypes.ITEM);
 
                         writer.Write(item.Type.Id);
@@ -291,7 +293,10 @@ namespace OpenTibiaCommons.Domain
                 }
 
                 string[] sTile = listTile.ToArray(); //zeh
-                System.IO.File.WriteAllLines(@fileName+"unity.txt", sTile); //zeh
+                System.IO.File.WriteAllLines(@fileName+"TileUnity.txt", sTile); //zeh
+
+                string[] sItem = listTile.ToArray(); //zeh
+                System.IO.File.WriteAllLines(@fileName + "ItemUnity.txt", sItem); //zeh
 
                 writer.WriteNodeStart((byte)OtMapNodeTypes.TOWNS);
 
