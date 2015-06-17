@@ -76,7 +76,7 @@ public class mapController : MonoBehaviour {
 	}
 
 	public void drawAllMap(playerStats Player){
-		Debug.Log ("Foi desabilitado para ser implementado futuramente.");
+//		Debug.Log ("Foi desabilitado para ser implementado futuramente.");
 /*
 		if (TerrainContainer != null) {
 			Destroy (TerrainContainer);

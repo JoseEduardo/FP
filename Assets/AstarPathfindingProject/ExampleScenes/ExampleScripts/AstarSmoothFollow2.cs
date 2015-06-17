@@ -12,7 +12,7 @@ public class AstarSmoothFollow2 : MonoBehaviour {
 	public bool smoothRotation = true;
 	public bool followBehind = true;
 	public float rotationDamping = 10.0f;
-	public bool staticOffset = false;
+	public bool staticOffset = true;
 	
 	void LateUpdate () {
 		Vector3 wantedPosition;
@@ -25,12 +25,14 @@ public class AstarSmoothFollow2 : MonoBehaviour {
 	       else
 		       wantedPosition = target.TransformPoint(0, height, distance);
 		}
-	       transform.position = Vector3.Lerp (transform.position, wantedPosition, Time.deltaTime * damping);
 
+		transform.position = Vector3.Lerp (transform.position, wantedPosition, Time.deltaTime * damping);
+/*
 	       if (smoothRotation) {
 		       Quaternion wantedRotation = Quaternion.LookRotation(target.position - transform.position, target.up);
 		       transform.rotation = Quaternion.Slerp (transform.rotation, wantedRotation, Time.deltaTime * rotationDamping);
 	       }
 	       else transform.LookAt (target, target.up);
+*/	       
 	 }
 }

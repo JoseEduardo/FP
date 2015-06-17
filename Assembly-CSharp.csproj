@@ -707,6 +707,8 @@
      <Compile Include="Assets\Slua\example\Main.cs" />
      <Compile Include="Assets\Slua\example\Perf.cs" />
      <Compile Include="Assets\Slua\example\VarObj.cs" />
+     <Compile Include="Assets\Warrior Pack Bundle 1 Free\Code\SmoothFollow.cs" />
+     <Compile Include="Assets\Warrior Pack Bundle 1 Free\Code\WarriorAnimationDemo.cs" />
      <Compile Include="Assets\scripts\ChangeColorByScale.cs" />
      <Compile Include="Assets\scripts\Controller.cs" />
      <Compile Include="Assets\scripts\CursorGrid.cs" />

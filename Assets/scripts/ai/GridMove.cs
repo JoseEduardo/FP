@@ -102,7 +102,7 @@ class GridMove : MonoBehaviour {
 					t += Time.deltaTime * (moveSpeed/gridSize) * factor;
 
 					transform.LookAt ( endPosition );
-					anim.Play("Walk");
+					anim.Play("Run");
 					transform.position = Vector3.Lerp(startPosition, endPosition, t);
 					yield return null;
 				}else{

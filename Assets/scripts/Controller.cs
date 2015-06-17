@@ -16,7 +16,13 @@ public class Controller : MonoBehaviour {
 		PlayerBody = Player.transform.FindChild("Body").gameObject;
 		PlayerBody.GetComponent<playerStats> ().positionTile = positionPlayer;
 
-		IsoCamera.GetComponent<SmoothFollow> ().target = PlayerBody.transform;
+		IsoCamera.AddComponent <AstarSmoothFollow2> ();	
+		IsoCamera.GetComponent<AstarSmoothFollow2> ().rotationDamping = 0;
+		IsoCamera.GetComponent<AstarSmoothFollow2> ().distance = -2.16F;
+		IsoCamera.GetComponent<AstarSmoothFollow2> ().height = 4.05F;
+		IsoCamera.GetComponent<AstarSmoothFollow2> ().damping = 3F;
+
+		IsoCamera.GetComponent<AstarSmoothFollow2> ().target = PlayerBody.transform;
 	}
 	
 	// Update is called once per frame
